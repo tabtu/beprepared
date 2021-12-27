@@ -8,9 +8,9 @@ import sys
 
 #
 # https://www.hackerrank.com/challenges/queens-attack-2
-*
-*
-*
+#
+#
+#
 # Complete the 'queensAttack' function below.
 #
 # The function is expected to return an INTEGER.
