@@ -17,6 +17,9 @@ class Result
 
     /*
      * https://www.hackerrank.com/challenges/organizing-containers-of-balls
+     * 
+     * 
+     * 
      * Complete the 'organizingContainers' function below.
      *
      * The function is expected to return a STRING.

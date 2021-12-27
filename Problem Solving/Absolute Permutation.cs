@@ -17,6 +17,9 @@ class Result
 
     /*
      * https://www.hackerrank.com/challenges/absolute-permutation
+     * 
+     * 
+     * 
      * Complete the 'absolutePermutation' function below.
      *
      * The function is expected to return an INTEGER_ARRAY.
@@ -31,7 +34,7 @@ class Result
         List<int> arr = new List<int>();
         for (int i = 0; i < n; i++)
         {
-            arr.Add(i+1);
+            arr.Add(i + 1);
         }
         if (k == 0) return arr;
         if (n < 3 && k < 2)

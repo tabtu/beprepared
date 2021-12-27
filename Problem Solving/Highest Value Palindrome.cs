@@ -17,6 +17,9 @@ class Result
 
     /*
      * https://www.hackerrank.com/challenges/richie-rich
+     * 
+     * 
+     * 
      * Complete the 'highestValuePalindrome' function below.
      *
      * The function is expected to return a STRING.

@@ -16,30 +16,32 @@ class Result
 {
 
     /*
-     * https://www.hackerrank.com/challenges/minimum-loss
+     * https://www.hackerrank.com/challenges/runningtime
      * 
      * 
      * 
-     * Complete the 'minimumLoss' function below.
+     * Complete the 'runningTime' function below.
      *
      * The function is expected to return an INTEGER.
-     * The function accepts LONG_INTEGER_ARRAY price as parameter.
+     * The function accepts INTEGER_ARRAY arr as parameter.
      */
 
-    public static int minimumLoss(List<long> price)
+    public static int runningTime(List<int> arr)
     {
-        List<long> sorted = price.ToList();
-        sorted.Sort();
-        long result = long.MaxValue;
-        for (int i = 1; i < sorted.Count; i++)
+        int count = 0;
+        for (int i = 1; i < arr.Count; i++)
         {
-            long gap = sorted[i] - sorted[i - 1];
-            if (gap < result && price.IndexOf(sorted[i]) < price.IndexOf(sorted[i - 1]))
+            int key = arr[i];
+            int j = i - 1;
+            while (j >= 0 && key < arr[j])
             {
-                result = gap;
+                arr[j + 1] = arr[j];
+                j--;
+                count++;
             }
+            arr[j + 1] = key;
         }
-        return (int)result;
+        return count;
     }
 
 }
@@ -52,9 +54,9 @@ class Solution
 
         int n = Convert.ToInt32(Console.ReadLine().Trim());
 
-        List<long> price = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(priceTemp => Convert.ToInt64(priceTemp)).ToList();
+        List<int> arr = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(arrTemp => Convert.ToInt32(arrTemp)).ToList();
 
-        int result = Result.minimumLoss(price);
+        int result = Result.runningTime(arr);
 
         textWriter.WriteLine(result);
 

@@ -16,30 +16,30 @@ class Result
 {
 
     /*
-     * https://www.hackerrank.com/challenges/minimum-loss
+     * https://www.hackerrank.com/challenges/designer-pdf-viewer
      * 
      * 
      * 
-     * Complete the 'minimumLoss' function below.
+     * Complete the 'designerPdfViewer' function below.
      *
      * The function is expected to return an INTEGER.
-     * The function accepts LONG_INTEGER_ARRAY price as parameter.
+     * The function accepts following parameters:
+     *  1. INTEGER_ARRAY h
+     *  2. STRING word
      */
 
-    public static int minimumLoss(List<long> price)
+    public static int designerPdfViewer(List<int> h, string word)
     {
-        List<long> sorted = price.ToList();
-        sorted.Sort();
-        long result = long.MaxValue;
-        for (int i = 1; i < sorted.Count; i++)
+        int highest = int.MinValue;
+        word = word.ToLower();
+        for (int i = 0; i < h.Count; i++)
         {
-            long gap = sorted[i] - sorted[i - 1];
-            if (gap < result && price.IndexOf(sorted[i]) < price.IndexOf(sorted[i - 1]))
+            if (word.Contains((char)(97 + i)) && h[i] > highest)
             {
-                result = gap;
+                highest = h[i];
             }
         }
-        return (int)result;
+        return word.Length * highest;
     }
 
 }
@@ -50,11 +50,11 @@ class Solution
     {
         TextWriter textWriter = new StreamWriter(@System.Environment.GetEnvironmentVariable("OUTPUT_PATH"), true);
 
-        int n = Convert.ToInt32(Console.ReadLine().Trim());
+        List<int> h = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(hTemp => Convert.ToInt32(hTemp)).ToList();
 
-        List<long> price = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(priceTemp => Convert.ToInt64(priceTemp)).ToList();
+        string word = Console.ReadLine();
 
-        int result = Result.minimumLoss(price);
+        int result = Result.designerPdfViewer(h, word);
 
         textWriter.WriteLine(result);
 

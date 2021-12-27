@@ -17,6 +17,9 @@ class Result
 
     /*
      * https://www.hackerrank.com/challenges/find-strings
+     * 
+     * 
+     * 
      * Complete the 'findStrings' function below.
      *
      * The function is expected to return a STRING_ARRAY.

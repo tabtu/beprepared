@@ -17,6 +17,9 @@ class Result
 
     /*
      * https://www.hackerrank.com/challenges/encryption
+     * 
+     * 
+     * 
      * Complete the 'encryption' function below.
      *
      * The function is expected to return a STRING.
@@ -29,15 +32,15 @@ class Result
         int col = (int)sqrt;
         if ((int)(sqrt * 10) % 10 != 0) col++;
         int row = (int)s.Length / col;
-        if(s.Length > row * col) row++;
+        if (s.Length > row * col) row++;
         int xyz = s.Length % col;
         Console.WriteLine(s.Length + " --- " + row + " : " + col + " : " + xyz);
-        
+
         string result = "";
-        for(int i = 0; i < col; i++)
+        for (int i = 0; i < col; i++)
         {
             string tr = "";
-            for(int j = 0; j < row; j++)
+            for (int j = 0; j < row; j++)
             {
                 if (j * col + i < s.Length)
                 {

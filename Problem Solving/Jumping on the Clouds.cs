@@ -16,30 +16,31 @@ class Result
 {
 
     /*
-     * https://www.hackerrank.com/challenges/minimum-loss
+     * https://www.hackerrank.com/challenges/jumping-on-the-clouds
      * 
      * 
      * 
-     * Complete the 'minimumLoss' function below.
+     * Complete the 'jumpingOnClouds' function below.
      *
      * The function is expected to return an INTEGER.
-     * The function accepts LONG_INTEGER_ARRAY price as parameter.
+     * The function accepts INTEGER_ARRAY c as parameter.
      */
 
-    public static int minimumLoss(List<long> price)
+    public static int jumpingOnClouds(List<int> c)
     {
-        List<long> sorted = price.ToList();
-        sorted.Sort();
-        long result = long.MaxValue;
-        for (int i = 1; i < sorted.Count; i++)
+        int sum = 0;
+        int i = 0;
+        while (i < c.Count - 2)
         {
-            long gap = sorted[i] - sorted[i - 1];
-            if (gap < result && price.IndexOf(sorted[i]) < price.IndexOf(sorted[i - 1]))
+            if (c[i] == 0 && c[i + 2] == 0) { sum += 1; i += 2; }
+            else { sum += 1; i += 1; }
+            if (i == c.Count - 2)
             {
-                result = gap;
+                sum++;
             }
         }
-        return (int)result;
+        if (sum == 0) return 1;
+        else return sum;
     }
 
 }
@@ -52,9 +53,9 @@ class Solution
 
         int n = Convert.ToInt32(Console.ReadLine().Trim());
 
-        List<long> price = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(priceTemp => Convert.ToInt64(priceTemp)).ToList();
+        List<int> c = Console.ReadLine().TrimEnd().Split(' ').ToList().Select(cTemp => Convert.ToInt32(cTemp)).ToList();
 
-        int result = Result.minimumLoss(price);
+        int result = Result.jumpingOnClouds(c);
 
         textWriter.WriteLine(result);
 
