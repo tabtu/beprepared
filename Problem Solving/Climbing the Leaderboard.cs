@@ -17,6 +17,9 @@ class Result
 
     /*
      * https://www.hackerrank.com/challenges/climbing-the-leaderboard
+     * 
+     * 
+     * 
      * Complete the 'climbingLeaderboard' function below.
      *
      * The function is expected to return an INTEGER_ARRAY.
@@ -27,7 +30,7 @@ class Result
 
     public static List<int> climbingLeaderboard(List<int> ranked, List<int> player)
     {
-                List<int> result = new List<int>();
+        List<int> result = new List<int>();
         ranked = ranked.Distinct().ToList();
         int i = 0;
         int j = player.Count - 1;

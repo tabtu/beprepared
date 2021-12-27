@@ -17,6 +17,9 @@ class Result
 
     /*
      * https://www.hackerrank.com/challenges/bomber-man
+     * 
+     * 
+     * 
      * Complete the 'bomberMan' function below.
      *
      * The function is expected to return a STRING_ARRAY.
@@ -33,7 +36,7 @@ class Result
             DumpMap(map);
             return Convert2Grid(map);
         }
-        
+
         if (n % 2 == 0)
         {
             for (int i = 0; i < map.Length; ++i)
@@ -42,7 +45,7 @@ class Result
             DumpMap(map);
             return Convert2Grid(map);
         }
-        
+
         IterateMap(map);
         if (n % 4 == 1) { IterateMap(map); }
         DumpMap(map);
@@ -52,7 +55,7 @@ class Result
     private static List<string> Convert2Grid(char[][] map)
     {
         List<string> grid = new List<string>();
-        foreach(char[] row in map)
+        foreach (char[] row in map)
         {
             grid.Add(new string(row));
         }
@@ -97,7 +100,7 @@ class Result
             }
         }
     }
-    
+
     private static void DumpMap(char[][] map)
     {
         for (int i = 0; i < map.Length; ++i)
@@ -105,7 +108,7 @@ class Result
             Console.Out.WriteLine(String.Join("", map[i]));
         }
     }
-    
+
     private static void ClearCell(char[][] map, int r, int c)
     {
         if (r < 0) return;

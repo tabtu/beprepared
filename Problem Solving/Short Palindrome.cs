@@ -17,6 +17,9 @@ class Result
 
     /*
      * https://www.hackerrank.com/challenges/short-palindrome
+     * 
+     * 
+     * 
      * Complete the 'shortPalindrome' function below.
      *
      * The function is expected to return an INTEGER.

@@ -17,6 +17,9 @@ class Result
 
     /*
      * https://www.hackerrank.com/challenges/bigger-is-greater
+     * 
+     * 
+     * 
      * Complete the 'biggerIsGreater' function below.
      *
      * The function is expected to return a STRING.
@@ -34,7 +37,7 @@ class Result
                 break;
             }
         }
-        
+
         if (w.Length < 2)
         {
             return "no answer";

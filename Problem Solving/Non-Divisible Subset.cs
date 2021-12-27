@@ -16,6 +16,9 @@ class Result
 {
     /*
      * https://www.hackerrank.com/challenges/non-divisible-subset
+     * 
+     * 
+     * 
      * Complete the 'nonDivisibleSubset' function below.
      *
      * The function is expected to return an INTEGER.
@@ -46,7 +49,7 @@ class Result
         List<int> hs = new List<int>();
         foreach (KeyValuePair<int, int> kvp in clst)
         {
-            if ((k % 2 == 0 && kvp.Key == k / 2) || kvp.Key == 0 )
+            if ((k % 2 == 0 && kvp.Key == k / 2) || kvp.Key == 0)
             {
                 count++;
             }

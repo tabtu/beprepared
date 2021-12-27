@@ -17,6 +17,9 @@ class Result
 
     /*
      * https://www.hackerrank.com/challenges/new-year-chaos
+     * 
+     * 
+     * 
      * Complete the 'minimumBribes' function below.
      *
      * The function accepts INTEGER_ARRAY q as parameter.

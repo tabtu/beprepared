@@ -17,6 +17,9 @@ class Result
 
     /*
      * https://www.hackerrank.com/challenges/minimum-loss
+     * 
+     * 
+     * 
      * Complete the 'minimumLoss' function below.
      *
      * The function is expected to return an INTEGER.
@@ -30,8 +33,8 @@ class Result
         long result = long.MaxValue;
         for (int i = 1; i < sorted.Count; i++)
         {
-            long gap = sorted[i] - sorted[i-1];
-            if (gap < result && price.IndexOf(sorted[i]) < price.IndexOf(sorted[i-1]))
+            long gap = sorted[i] - sorted[i - 1];
+            if (gap < result && price.IndexOf(sorted[i]) < price.IndexOf(sorted[i - 1]))
             {
                 result = gap;
             }
