@@ -22,9 +22,10 @@ Linked problem URL in each comment. <br />
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Highest%20Value%20Palindrome.cs">Highest Value Palindrome</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Jumping%20on%20the%20Clouds.cs">Jumping on the Clouds</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Longest%20Palindrome.cs">Longest Palindrome</a>
-- <a href="https://www.hackerrank.com/challenges/matrix-rotation-algo">Matrix Layer Rotation</a>
+- <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Matrix%20Layer%20Rotation.cs">Matrix Layer Rotation</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Median%20of%20Two%20Sorted%20Arrays.cs">Median of Two Sorted Arrays</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Minimum%20Loss.cs">Minimum Loss</a>
+- <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Minimum%20Path%20Sum.cs">Minimum Path Sum</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/New%20Year%20Chaos.cs">New Year Chaos</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Non-Divisible%20Subset.cs">Non-Divisible Subset</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Organizing%20Containers%20of%20Balls.cs">Organizing Containers of Balls</a>
