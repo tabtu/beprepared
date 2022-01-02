@@ -26,9 +26,11 @@ Linked problem URL in each comment. <br />
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Median%20of%20Two%20Sorted%20Arrays.cs">Median of Two Sorted Arrays</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Minimum%20Loss.cs">Minimum Loss</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Minimum%20Path%20Sum.cs">Minimum Path Sum</a>
+- <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/N%20Queens.cs">N Queens</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/New%20Year%20Chaos.cs">New Year Chaos</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Non-Divisible%20Subset.cs">Non-Divisible Subset</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Organizing%20Containers%20of%20Balls.cs">Organizing Containers of Balls</a>
+- <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Permutations.cs">Permutations</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Picking%20Numbers.cs">Picking Numbers</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Populating%20Next%20Right%20Pointers%20in%20Each%20Node.cs">Populating Next Right Pointers in Each Node</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Queens%20Attack%202.py">Queens Attack 2.py</a>
