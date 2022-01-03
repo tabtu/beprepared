@@ -24,6 +24,7 @@ Linked problem URL in each comment. <br />
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Longest%20Palindrome.cs">Longest Palindrome</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Matrix%20Layer%20Rotation.cs">Matrix Layer Rotation</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Median%20of%20Two%20Sorted%20Arrays.cs">Median of Two Sorted Arrays</a>
+- <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Minimizing%20Permutations.cs">Minimizing Permutations</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Minimum%20Loss.cs">Minimum Loss</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Minimum%20Path%20Sum.cs">Minimum Path Sum</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/N%20Queens.cs">N Queens</a>
@@ -34,6 +35,7 @@ Linked problem URL in each comment. <br />
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Picking%20Numbers.cs">Picking Numbers</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Populating%20Next%20Right%20Pointers%20in%20Each%20Node.cs">Populating Next Right Pointers in Each Node</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Queens%20Attack%202.py">Queens Attack 2.py</a>
+- <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Reverse%20Operations.cs">Reverse Operations</a>
 - Rotational Cipher
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Running%20Time%20of%20Algorithms.cs">Running Time of Algorithms</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Search%20a%202D%20Matrix%20II.cs">Search a 2D Matrix II</a>
