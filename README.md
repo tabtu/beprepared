@@ -10,6 +10,7 @@ Linked problem URL in each comment. <br />
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Bigger%20is%20Greater.cs">Bigger is Greater</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Binary%20Search.cs">Binary Search</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Cavity%20Map.cs">Cavity Map</a>
+- <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Change%20in%20a%20Foreign%20Currency.cs">Change in a Foreign Currency</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Climbing%20the%20Leaderboard.cs">Climbing the Leaderboard</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Combination%20Sum%20II.cs">Combination Sum II</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Day%20of%20the%20Programmer.cs">Day of the Programmer
