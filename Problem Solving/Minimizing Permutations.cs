@@ -22,32 +22,46 @@ public class Solution
     // Breadth First Search
     private static int minOperations(int[] arr)
     {
+        // define the target 
         int[] target = new int[arr.Length];
         arr.CopyTo(target, 0);
         Array.Sort(target);
 
+        // result container
         int ret = 0;
+
+        // initialize logged hashtable and option queue
         HashSet<string> seen = new HashSet<string>();
         Queue<int[]> queue = new Queue<int[]>();
         queue.Enqueue(arr);
         seen.Add(Arr2Str(arr));
+
+        // loop when option queue is not null
         while (queue.Count > 0)
         {
             int size = queue.Count;
+            // loop all cases in option queue
             for (int i = 0; i < size; i++)
             {
+                // do option
                 int[] curr = queue.Dequeue();
+
+                // return if find result
                 if (target.Equals(curr))
                 {
                     return ret;
                 }
+
+                // try all cases in the same level.
                 for (int j = 0; j < curr.Length; j++)
                 {
                     for (int k = j + 1; k < curr.Length; k++)
                     {
                         int[] next = new int[curr.Length];
                         curr.CopyTo(next, 0);
+                        // reverse between j and k
                         reverse(next, j, k);
+                        // add if not scanned
                         if (!seen.Contains(Arr2Str(next)))
                         {
                             queue.Enqueue(next);
@@ -56,11 +70,14 @@ public class Solution
                     }
                 }
             }
+
+            // next level
             ret++;
         }
         return ret;
     }
 
+    // partation reverse
     private static void reverse(int[] arr, int from, int to)
     {
         for (; from < to; from++, to--)
@@ -71,6 +88,7 @@ public class Solution
         }
     }
 
+    // change to string for comparing and saving
     public static string Arr2Str(int[] arr)
     {
         string result = "";
