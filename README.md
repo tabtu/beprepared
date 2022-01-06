@@ -12,9 +12,10 @@ Linked problem URL in each comment. <br />
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Cavity%20Map.cs">Cavity Map</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Change%20in%20a%20Foreign%20Currency.cs">Change in a Foreign Currency</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Climbing%20the%20Leaderboard.cs">Climbing the Leaderboard</a>
-- <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Combination%20Sum%20II.cs">Combination Sum II</a>
+- <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Combination%20Sum.cs">Combination Sum</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Day%20of%20the%20Programmer.cs">Day of the Programmer
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Designer%20PDF%20Viewer.cs">Designer PDF Viewer</a>
+- <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Element%20Swapping.cs">Element Swapping</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Encryption.cs">Encryption</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Extra%20Long%20Factorials.cs">Extra Long Factorials</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Fair%20Rations.cs">Fair Rations</a>
