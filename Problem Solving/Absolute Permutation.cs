@@ -14,7 +14,6 @@ using System;
 
 class Result
 {
-
     /*
      * https://www.hackerrank.com/challenges/absolute-permutation
      * 

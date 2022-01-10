@@ -127,4 +127,62 @@ public class Solution
         }
         return sum;
     }
+
+
+
+    // BFS mark levels
+    /*
+    class Node
+    {
+        public int value;
+        public int level;
+        public Node left;
+        public Node right;
+        public Node(int v) {
+            value = v;
+            left = right = null;
+        }
+    }
+    */
+    private static void markLevel(Node node)
+    {
+        Queue<Node> que1 = new Queue<Node>();
+        Queue<Node> que2 = new Queue<Node>();
+
+        bool isQ1 = true;
+        que1.Enqueue(node);
+
+        int curl = 0;
+
+        while (isQ1 == true && que1.Count > 0 || isQ1 == false && que2.Count > 0)
+        {
+            Node nd;
+            if (isQ1 == true)
+            {
+                nd = que1.Dequeue();
+                if (nd.left != null) que2.Enqueue(nd.left);
+                if (nd.right != null) que2.Enqueue(nd.right);
+            }
+            else
+            {
+                nd = que2.Dequeue();
+                if (nd.left != null) que1.Enqueue(nd.left);
+                if (nd.right != null) que1.Enqueue(nd.right);
+            }
+
+            nd.level = curl;
+            Console.Write(nd.level + " ");
+
+            if (isQ1 == true && que1.Count == 0)
+            {
+                isQ1 = false;
+                curl++;
+            }
+            if (isQ1 == false && que2.Count == 0)
+            {
+                isQ1 = true;
+                curl++;
+            }
+        }
+    }
 }
