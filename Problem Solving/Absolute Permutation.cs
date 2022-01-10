@@ -14,11 +14,12 @@ using System;
 
 class Result
 {
-
     /*
      * https://www.hackerrank.com/challenges/absolute-permutation
      * 
-     * 
+     * double queue/list problem. 
+     * - special with n < 3 && k < 2
+     * - if ()
      * 
      * Complete the 'absolutePermutation' function below.
      *

@@ -2,8 +2,8 @@
  *
  * https://leetcode.com/problems/maximum-sum-bst-in-binary-tree/
  * 
- * 
- * 
+ * Binary Tree Traversal
+ * - 
  * 
  * 
  * Definition for a binary tree node.
@@ -20,6 +20,33 @@
  */
 public class Solution
 {
+    private int max;
+    public int maxSumBST2(TreeNode root)
+    {
+        max = 0;
+        findMaxSum(root);
+        return max;
+    }
+
+    //int[]{isBST(0/1), largest, smallest, sum}
+    public int[] findMaxSum(TreeNode node)
+    {
+        if (node == null)
+        {
+            return new int[] { 1, Integer.MIN_VALUE, Integer.MAX_VALUE, 0 };
+        }
+        int[] left = findMaxSum(node.left);
+        int[] right = findMaxSum(node.right);
+        boolean isBST = left[0] == 1 && right[0] == 1 && node.val > left[1] && node.val < right[2];
+        int sum = node.val + left[3] + right[3];
+        if (isBST)
+        {
+            max = Math.max(max, sum);
+        }
+        return new int[] { isBST ? 1 : 0, Math.max(node.val, right[1]), Math.min(node.val, left[2]), sum };
+    }
+
+
 
     public int MaxSumBST(TreeNode root)
     {
@@ -103,29 +130,59 @@ public class Solution
 
 
 
-    private int max;
-    public int maxSumBST2(TreeNode root)
+    // BFS mark levels
+    /*
+    class Node
     {
-        max = 0;
-        findMaxSum(root);
-        return max;
+        public int value;
+        public int level;
+        public Node left;
+        public Node right;
+        public Node(int v) {
+            value = v;
+            left = right = null;
+        }
     }
-
-    //int[]{isBST(0/1), largest, smallest, sum}
-    public int[] findMaxSum(TreeNode node)
+    */
+    private static void markLevel(Node node)
     {
-        if (node == null)
+        Queue<Node> que1 = new Queue<Node>();
+        Queue<Node> que2 = new Queue<Node>();
+
+        bool isQ1 = true;
+        que1.Enqueue(node);
+
+        int curl = 0;
+
+        while (isQ1 == true && que1.Count > 0 || isQ1 == false && que2.Count > 0)
         {
-            return new int[] { 1, Integer.MIN_VALUE, Integer.MAX_VALUE, 0 };
+            Node nd;
+            if (isQ1 == true)
+            {
+                nd = que1.Dequeue();
+                if (nd.left != null) que2.Enqueue(nd.left);
+                if (nd.right != null) que2.Enqueue(nd.right);
+            }
+            else
+            {
+                nd = que2.Dequeue();
+                if (nd.left != null) que1.Enqueue(nd.left);
+                if (nd.right != null) que1.Enqueue(nd.right);
+            }
+
+            nd.level = curl;
+            Console.Write(nd.level + " ");
+
+            if (isQ1 == true && que1.Count == 0)
+            {
+                isQ1 = false;
+                curl++;
+            }
+            if (isQ1 == false && que2.Count == 0)
+            {
+                isQ1 = true;
+                curl++;
+            }
         }
-        int[] left = findMaxSum(node.left);
-        int[] right = findMaxSum(node.right);
-        boolean isBST = left[0] == 1 && right[0] == 1 && node.val > left[1] && node.val < right[2];
-        int sum = node.val + left[3] + right[3];
-        if (isBST)
-        {
-            max = Math.max(max, sum);
-        }
-        return new int[] { isBST ? 1 : 0, Math.max(node.val, right[1]), Math.min(node.val, left[2]), sum };
     }
 }

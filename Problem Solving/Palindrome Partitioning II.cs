@@ -19,7 +19,6 @@ public class Solution
         // bfs
         bool[] visited = new bool[s.Length];
         for (int i = 0; i < visited.Length; i++) visited[i] = false;
-        // 
         while (true)
         {
             Queue<int> tmp = new Queue<int>();
