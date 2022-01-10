@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace coding
 {
     /// <summary>
-    /// Binary Tree, BST, AVL, Red-Black
+    /// Binary Tree, BST, AVL
     /// </summary>
     public class _BinaryTree
     {
@@ -16,11 +16,11 @@ namespace coding
             public Node(int d, Node l = null, Node r = null)
             {
                 data = d;
-                size = -1;
                 left = l;
                 right = r;
+                size = 1;
                 // AVL
-                height = -1;
+                height = 0;
                 // BFS
                 level = -1;
             }
@@ -31,9 +31,9 @@ namespace coding
             public Node(int d, int s, int h, Node l = null, Node r = null)
             {
                 data = d;
-                size = s;
                 left = l;
                 right = r;
+                size = s;
                 // AVL
                 height = h;
                 // BFS
@@ -503,11 +503,11 @@ namespace coding
         }
 
         /// <summary>
-        /// 
+        /// insert a node into AVL tree
         /// </summary>
-        /// <param name="node"></param>
-        /// <param name="data"></param>
-        /// <returns></returns>
+        /// <param name="node">root</param>
+        /// <param name="data">data</param>
+        /// <returns>root</returns>
         public Node insertAVL(Node node, int data)
         {
             if (node == null) return new Node(data, 1, 0);
@@ -520,9 +520,16 @@ namespace coding
             }
             node.size = 1 + size(node.left) + size(node.right);
             node.height = 1 + Math.Max(height(node.left), height(node.right));
+
             return balance(node);
         }
 
+        /// <summary>
+        /// delete a note in AVL tree
+        /// </summary>
+        /// <param name="node">root</param>
+        /// <param name="data">data</param>
+        /// <returns>root</returns>
         public Node deleteAVL(Node node, int data)
         {
             if (node == null) return null;
@@ -538,34 +545,14 @@ namespace coding
                     node = minNode(next.right);
                     node.right = deleteMin(next.right);
                     node.left = next.left;
-
-                    //Node next = node;
-                    //node.right = minNode(next.right);
-                    //node.left = next.left;
                 }
             }
             node.size = 1 + size(node.left) + size(node.right);
             node.height = 1 + Math.Max(height(node.left), height(node.right));
-
-
-            //if (node == null) return null;
-            //if (data < node.data) node.left = deleteBST(node.left, data);
-            //else if (data > node.data) node.right = deleteBST(node.right, data);
-            //else
-            //{
-            //    if (node.right == null) return node.left;
-            //    if (node.left == null) return node.right;
-            //    Node next = node;
-            //    node.right = minNode(next.right);
-            //    node.left = next.left;
-            //}
-            //node.size = 1 + size(node.left) + size(node.right);
-            //return node;
-
             return balance(node);
         }
 
-        public Node balance(Node node)
+        private Node balance(Node node)
         {
             int balF = balanceFactor(node);
             if (balF < -1)
@@ -745,23 +732,28 @@ namespace coding
 
         //static void Main(string[] args)
         //{
-        //    Node root = new Node(0);
-        //    Node l = new Node(1);
-        //    Node r = new Node(2);
-        //    root.left = l;
-        //    root.right = r;
-        //    Node ll = new Node(3);
-        //    l.left = ll;
-        //    Node lr = new Node(4);
-        //    l.right = lr;
-        //    Node lll = new Node(9);
-        //    lr.left = lll;
+        //int n = 12;
+        //_BinaryTree bt = new _BinaryTree();
+        //int[] lst;
+        //_BinaryTree.Node root = new _BinaryTree.Node(0);
+        //for (int i = 1; i < n; i++)
+        //{
+        //    root = bt.insertAVL(root, i);
+        //}
 
+        //lst = bt.preorderTraversal(root);
+        //foreach (int i in lst)
+        //{
+        //    Console.Write(i + " ");
+        //}
+        //Console.WriteLine();
 
-        //    postorderTraversal(root);
-        //    Console.WriteLine();
-        //    markLevel(root);
-
+        //lst = bt.inorderTraversal(root);
+        //foreach (int i in lst)
+        //{
+        //    Console.Write(i + " ");
+        //}
+        //Console.WriteLine();
         //}
     }
 }
