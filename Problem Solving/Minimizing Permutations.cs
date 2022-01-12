@@ -47,7 +47,7 @@ public class Solution
                 int[] curr = queue.Dequeue();
 
                 // return if find result
-                if (target.Equals(curr))
+                if (Arr2Str(target) == Arr2Str(curr))
                 {
                     return ret;
                 }
@@ -74,7 +74,7 @@ public class Solution
             // next level
             ret++;
         }
-        return ret;
+        return -1;
     }
 
     // partation reverse

@@ -34,7 +34,6 @@ public class Solution
         public IList<IList<string>> GetResultString()
         {
             IList<IList<string>> res = new List<IList<string>>();
-
             foreach (bool[,] bd in result)
             {
                 IList<string> sbd = new List<string>();

@@ -1,4 +1,4 @@
-/* https://leetcode.com/problems/daily-temperatures/submissions/
+/* https://leetcode.com/problems/daily-temperatures/
  * 
  * Single way stack, only push element value in one way.
  * - push in stack one by one;
