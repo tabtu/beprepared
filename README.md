@@ -42,16 +42,16 @@ Linked problem URL in each comment. <br />
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Matrix%20Layer%20Rotation.cs">Matrix Layer Rotation</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Maximum%20Sum%20BST%20in%20Binary%20Tree.cs">Maximum Sum BST in Binary Tree</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Median%20of%20Two%20Sorted%20Arrays.cs">Median of Two Sorted Arrays</a>
-- <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Minimizing%20Permutations.cs">Minimizing Permutations (BFS)</a>
+- <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Minimizing%20Permutations.cs">Minimizing Permutations</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Minimum%20Loss.cs">Minimum Loss</a>
-- <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Minimum%20Path%20Sum.cs">Minimum Path Sum (RC, DP)</a>
+- <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Minimum%20Path%20Sum.cs">Minimum Path Sum</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/N%20Queens.cs">N Queens</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/New%20Year%20Chaos.cs">New Year Chaos</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Non-Divisible%20Subset.cs">Non-Divisible Subset</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Organizing%20Containers%20of%20Balls.cs">Organizing Containers of Balls</a>
-- <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Palindrome%20Partitioning.cs">Palindrome Partitioning (DFS)</a>
-- <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Palindrome%20Partitioning%20II.cs">Palindrome Partitioning II (BFS)</a>
-- <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Permutations.cs">Permutations (DFS)</a>
+- <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Palindrome%20Partitioning.cs">Palindrome Partitioning</a>
+- <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Palindrome%20Partitioning%20II.cs">Palindrome Partitioning II</a>
+- <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Permutations.cs">Permutations</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Picking%20Numbers.cs">Picking Numbers</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Populating%20Next%20Right%20Pointers%20in%20Each%20Node.cs">Populating Next Right Pointers in Each Node</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Queens%20Attack%202.py">Queens Attack 2</a>
@@ -62,7 +62,6 @@ Linked problem URL in each comment. <br />
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Running%20Time%20of%20Algorithms.cs">Running Time of Algorithms</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Search%20a%202D%20Matrix%20II.cs">Search a 2D Matrix II</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Serialize%20and%20Deserialize%20Binary%20Tree.cs">Serialize and Deserialize Binary Tree</a>
-- <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Serialize%20and%20Deserialize%20Binary%20Tree.cs">Serialize and Deserialize Binary Tree (BFS)</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Short%20Palindrome.cs">Short Palindrome</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Strange%20Counter.cs">Strange Counter</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/String%20to%20Integer%20(atio).cs">String to Integer (atio)</a>
@@ -72,7 +71,7 @@ Linked problem URL in each comment. <br />
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/The%20Time%20in%20Words.cs">The Time in Words</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Unique%20Binary%20Search%20Trees%20II.cs">Unique Binary Search Trees II</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Unique%20Binary%20Search%20Trees.cs">Unique Binary Search Trees</a>
-- <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/UniquePaths.cs">UniquePaths (DP)</a>
+- <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/UniquePaths.cs">UniquePaths</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/Word Ladder.cs">Word Ladder</a>
 
 # Sql:

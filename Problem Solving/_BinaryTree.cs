@@ -1,3 +1,61 @@
+/*
+ * Depth-First Search
+ * 
+ * 1, Find the relationship between target and options.
+ * 2, Declare the boundary, including success and failure.
+ * 3, Loop choices, (DDRR) in each loop round.
+ * 
+ * 
+ * 1, 寻找结束目标和做选择的关系
+ *    - 递归调用结果一般储存在函数外部
+ *    - 2,3 步骤即是dfs算法描述
+ * 2, 确定结束边界(成功/越界)
+ *    - 将成功结果保存在路径表
+ *    - 越界直接回滚上一级递归
+ * 3, 循环做选择并将结果复制到路径表, 循环内容如下:
+ *    - 做选择,添加到当前路径(do)
+ *    - 修整可选择项, 移出不必要项目(dismiss)
+ *    - 递归, 传入上一次结果和修整后可选择项目(recursive)
+ *    - 还原选择项目, 还原路径(rollback)
+ * 
+ * 算法模板:
+ * ---------------------------------
+IList<IList<T>> paths;
+void dfs_backtrack(TR target, IList<T> curpts, IList<T> options) {
+    if (/succed/) {
+        paths.Add(new List<T>(curpts));
+    }
+    if (/boundary/) {
+        return;
+    }
+    // deep seek with options
+    for (int i = 0; i < options.Length; i++) {
+        curpts.Add(options[i]);
+        target = dooption(target, options[i]);
+
+        // TODO: decrease options if possible
+        IList<T> next_options = cutbranches(options);
+
+        dfs_backtrack(target, curpts, next_options);
+
+        target = rollback(target, options[i]);
+        curpts.RemoveAt(curpts.Count - 1);
+    }
+}
+* ---------------------------------
+* 
+* Problems:
+* - Change in a Foreign Currency
+* - Palindrome Partitioning
+* - Permutations
+* - N Queens
+* 
+*/
+
+
+
+
+
 using System;
 using System.Linq;
 using System.Collections.Generic;
@@ -103,46 +161,22 @@ namespace coding
 
         public int[] levelorderTraversal(Node node)
         {
-            Queue<int> queue = new Queue<int>();
+            IList<int> result = new List<int>();
             if (node != null)
             {
-                Queue<Node> queue2 = new Queue<Node>();
-                queue2.Enqueue(node);
-                while (queue2.Count > 0)
+                Queue<Node> queue = new Queue<Node>();
+                queue.Enqueue(node);
+                while (queue.Count > 0)
                 {
-                    Node x = queue2.Dequeue();
-                    queue.Enqueue(x.data);
-                    if (x.left != null)
+                    Node nd = queue.Dequeue();
+                    result.Add(nd.data);
+                    if (nd.left != null)
                     {
-                        queue2.Enqueue(x.left);
+                        queue.Enqueue(nd.left);
                     }
-                    if (x.right != null)
+                    if (nd.right != null)
                     {
-                        queue2.Enqueue(x.right);
-                    }
-                }
-            }
-            return queue.ToArray();
-        }
-
-        public int[] levelorderTraversal_LEVEL(Node node)
-        {
-            Queue<int> queue = new Queue<int>();
-            if (node != null)
-            {
-                Queue<Node> queue2 = new Queue<Node>();
-                queue2.Enqueue(node);
-                while (queue2.Count > 0)
-                {
-                    Node x = queue2.Dequeue();
-                    queue.Enqueue(x.level);
-                    if (x.left != null)
-                    {
-                        queue2.Enqueue(x.left);
-                    }
-                    if (x.right != null)
-                    {
-                        queue2.Enqueue(x.right);
+                        queue.Enqueue(nd.right);
                     }
                 }
             }
@@ -355,7 +389,7 @@ namespace coding
         }
 
         /// <summary>
-        /// Returns the number of nodes in the subtree less than key.
+        /// Returns the number of nodes in the subtree less than data.
         /// </summary>
         /// <param name="node"></param>
         /// <param name="data"></param>
@@ -380,6 +414,7 @@ namespace coding
             if (contains(node, hi)) return rank(node, hi) - rank(node, lo) + 1;
             else return rank(node, hi) - rank(node, lo);
         }
+
 
 
 
@@ -494,8 +529,9 @@ namespace coding
 
 
 
-        // --------------------------------- AVL ---------------------------------
 
+
+        // --------------------------------- AVL ---------------------------------
         private int height(Node node)
         {
             if (node == null) return -1;
@@ -621,8 +657,6 @@ namespace coding
             return balance(node);
         }
 
-
-
         /// <summary>
         /// Checks if AVL property is consistent in the subtree.
         /// </summary>
@@ -676,11 +710,17 @@ namespace coding
 
 
 
+
+
+
+        // --------------------------------- SOLUTIONS ---------------------------------
+        /* 
+         * Calculate the depth of left and right, check balance.
+         */
         bool isBalanced(Node root)
         {
             return dfs(root) >= 0;
         }
-
         public int dfs(Node root)
         {
             if (root == null)
@@ -703,6 +743,9 @@ namespace coding
         }
 
 
+        /* ---------------------------------
+         * Find the max sum of sub binary search tree.
+         */
         private int maxSumValue;
         public int maxSumBST(Node root)
         {
@@ -710,7 +753,6 @@ namespace coding
             findMaxSum(root);
             return maxSumValue;
         }
-
         //int[]{isBST(0/1), largest, smallest, sum}
         public int[] findMaxSum(Node node)
         {
