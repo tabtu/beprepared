@@ -1,17 +1,111 @@
-// merge sort
-// quick sort
-// 3 way quick sort
-// bucket sort
-
 using System;
-using System.Collections.Generic;
 
 namespace coding
 {
     public class _Sort
     {
+        // --------------------------------- Simple Sort ---------------------------------
+        /// <summary>
+        /// Selection sort
+        /// </summary>
+        /// <param name="a">array</param>
+        /// <returns>sorted array</returns>
+        public void SelectionSort(int[] a)
+        {
+            int n = a.Length;
+            for (int i = 0; i < n; i++)
+            {
+                int min = i;
+                for (int j = i + 1; j < n; j++)
+                {
+                    if (a[j] < a[min]) min = j;
+                }
+                swap(ref a[i], ref a[min]);
+            }
+        }
+
+        /// <summary>
+        /// Insertion sort
+        /// </summary>
+        /// <param name="a">array</param>
+        /// <returns>sorted array</returns>
+        public void InsertionSort(int[] a)
+        {
+            int n = a.Length;
+            for (int i = 1; i < n; i++)
+            {
+                for (int j = i; j > 0 && a[j] < a[j - 1]; j--)
+                {
+                    swap(ref a[j], ref a[j - 1]);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Shell sort
+        /// </summary>
+        /// <param name="a">array</param>
+        /// <returns>sorted array</returns>
+        public void ShellSort(int[] a)
+        {
+            int n = a.Length;
+
+            // 3x+1 increment sequence:  1, 4, 13, 40, 121, 364, 1093, ... 
+            int h = 1;
+            while (h < n / 3) h = 3 * h + 1;
+
+            while (h >= 1)
+            {
+                // h-sort the array
+                for (int i = h; i < n; i++)
+                {
+                    for (int j = i; j >= h && a[j] < a[j - h]; j -= h)
+                    {
+                        swap(ref a[j], ref a[j - h]);
+                    }
+                }
+                h /= 3;
+            }
+        }
 
 
+
+
+
+        // --------------------------------- Heap Sort ---------------------------------
+        public void HeapSort(int[] arr)
+        {
+            int n = arr.Length;
+
+            // 注意，此时我们的堆是从0开始索引的
+            // 从(最后一个元素的索引-1)/2开始
+            // 最后一个元素的索引 = n-1
+            for (int i = (n - 1 - 1) / 2; i >= 0; i--)
+                shiftDown(arr, n, i);
+
+            for (int i = n - 1; i > 0; i--)
+            {
+                swap(ref arr[0], ref arr[i]);
+                shiftDown(arr, i, 0);
+            }
+        }
+        private void shiftDown(int[] arr, int n, int k)
+        {
+
+            while (2 * k + 1 < n)
+            {
+                //左孩子节点
+                int j = 2 * k + 1;
+                //右孩子节点比左孩子节点大
+                if (j + 1 < n && arr[j + 1] > arr[j])
+                    j += 1;
+                //比两孩子节点都大
+                if (arr[k] >= arr[j]) break;
+                //交换原节点和孩子节点的值
+                swap(ref arr[k], ref arr[j]);
+                k = j;
+            }
+        }
 
 
 
@@ -25,7 +119,6 @@ namespace coding
             mergeSort(res, 0, arr.Length - 1);
             return res;
         }
-
         public void mergeSort(int[] arr, int l, int r)
         {
             if (l < r)
@@ -260,6 +353,22 @@ namespace coding
             j = tmp;
         }
 
+        private bool isSorted(int[] a)
+        {
+            for (int i = 1; i < a.Length; i++)
+                if (a[i] < a[i - 1]) return false;
+            return true;
+        }
+
+        private bool isHsorted(int[] a, int h)
+        {
+            // is the array h-sorted
+            for (int i = h; i < a.Length; i++)
+                if (a[i] < a[i - h]) return false;
+            return true;
+        }
+
+
 
 
 
@@ -309,7 +418,7 @@ namespace coding
             // random pivot
             Random random = new Random();
             int rdp = random.Next(left, right);
-            swap(ref arr[left], ref arr[rdp]);
+            swap(ref nums[left], ref nums[rdp]);
 
             int pivot = nums[left];
             int j = left;
@@ -327,6 +436,126 @@ namespace coding
             // 交换以后 nums[left..j - 1] < pivot, nums[j] = pivot, nums[j + 1..right] >= pivot
             return j;
         }
+
+
+
+
+
+        //public static int[] MergeSort(int[] a)
+        //{
+        //    int[] aux = new int[a.Length];
+        //    MergeSort(a, aux, 0, a.Length - 1);
+        //    return a;
+        //}
+        //private static void MergeSort(int[] a, int[] aux, int lo, int hi)
+        //{
+        //    if (hi <= lo) return;
+        //    int mid = lo + (hi - lo) / 2;
+        //    MergeSort(a, aux, lo, mid);
+        //    MergeSort(a, aux, mid + 1, hi);
+        //    merge(a, aux, lo, mid, hi);
+        //}
+        //private static int[] merge(int[] a, int[] aux, int lo, int mid, int hi)
+        //{
+        //    // copy to aux[]
+        //    for (int k = lo; k <= hi; k++)
+        //    {
+        //        aux[k] = a[k];
+        //    }
+        //    // merge back to a[]
+        //    int i = lo, j = mid + 1;
+        //    for (int k = lo; k <= hi; k++)
+        //    {
+        //        if (i > mid) a[k] = aux[j++];
+        //        else if (j > hi) a[k] = aux[i++];
+        //        else if (aux[j] < aux[i]) a[k] = aux[j++];
+        //        else a[k] = aux[i++];
+        //    }
+        //    return a;
+        //}
+
+
+
+        //public static int[] quickSort(int[] a)
+        //{
+        //    Random random = new Random();
+        //    random.Next(10, 50);
+        //    quickSort(a, 0, a.Length - 1);
+        //    return a;
+        //}
+        //// quicksort the subarray from a[lo] to a[hi]
+        //private static void quickSort(int[] a, int lo, int hi)
+        //{
+        //    if (hi <= lo) return;
+        //    int j = quickPartition(a, lo, hi);
+        //    quickSort(a, lo, j - 1);
+        //    quickSort(a, j + 1, hi);
+        //}
+        //// partition the subarray a[lo..hi] so that a[lo..j-1] <= a[j] <= a[j+1..hi]
+        //// and return the index j.
+        //private static int quickPartition(int[] a, int lo, int hi)
+        //{
+        //    int i = lo;
+        //    int j = hi + 1;
+        //    int v = a[lo];
+        //    while (true)
+        //    {
+        //        // find item on lo to swap
+        //        while (a[++i] < v)
+        //        {
+        //            if (i == hi) break;
+        //        }
+        //        // find item on hi to swap
+        //        while (v < a[--j])
+        //        {
+        //            if (j == lo) break;      // redundant since a[lo] acts as sentinel
+        //        }
+        //        // check if pointers cross
+        //        if (i >= j) break;
+        //        swap(a, i, j);
+        //    }
+        //    // put partitioning item v at a[j]
+        //    swap(a, lo, j);
+        //    // now, a[lo .. j-1] <= a[j] <= a[j+1 .. hi]
+        //    return j;
+        //}
+
+
+
+        ///// <summary>
+        ///// Quick sort (3 Way)
+        ///// </summary>
+        ///// <param name="a">array</param>
+        ///// <returns>sorted array</returns>
+        //public static int[] quick3WaySort(int[] a)
+        //{
+        //    quickSort3Way(a, 0, a.Length - 1);
+        //    return a;
+        //}
+        //// quicksort the subarray a[lo .. hi] using 3-way partitioning
+        //private static void quickSort3Way(int[] a, int lo, int hi)
+        //{
+        //    if (hi <= lo) return;
+        //    int lt = lo, gt = hi;
+        //    int v = a[lo];
+        //    int i = lo + 1;
+        //    while (i <= gt)
+        //    {
+        //        if (a[i] < v) swap(a, lt++, i++);
+        //        else if (a[i] > v) swap(a, i, gt--);
+        //        else i++;
+        //    }
+        //    // a[lo..lt-1] < v = a[lt..gt] < a[gt+1..hi]. 
+        //    quickSort3Way(a, lo, lt - 1);
+        //    quickSort3Way(a, gt + 1, hi);
+        //}
+        //private static swap(int[] arr, int i, int j)
+        //{
+        //    int t = arr[i];
+        //    arr[i] = arr[j];
+        //    arr[j] = t;
+        //}
+
 
 
 
