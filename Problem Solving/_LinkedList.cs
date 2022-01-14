@@ -160,6 +160,64 @@ namespace coding
 
 
 
+        /* 
+         * https://leetcode.com/problems/rotate-list
+         * 
+         * Given the head of a linked list, rotate the list to the right by k places.
+         * 
+         * Example 1:
+         * Input: head = [1,2,3,4,5], k = 2
+         * Output: [4,5,1,2,3]
+         * 
+         */
+        public ListNode RotateRight(ListNode head, int k)
+        {
+            if (head == null || k == 0)
+            {
+                return head;
+            }
+            ListNode p = head;
+            int len = 1;
+            while (p.next != null)
+            {
+                p = p.next;
+                len++;
+            }
+            p.next = head;
+            k %= len;
+            for (int i = 0; i < len - k; i++)
+            {
+                p = p.next;
+            }
+            head = p.next;
+            p.next = null;
+            return head;
+        }
+
+
+
+        /*
+         * https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/
+         * 
+         * Remove duplicates elements in a sorted array, only leave maximum 2 same numbers. 
+         * Example 1:
+         * Input: nums = [1,1,1,1,1,1,2,2,2,2,2,2,2,3,4,4,4,5,5]
+         * Output: 5, nums = [1,1,2,2,3,4,4,5,5]
+         * 
+         */
+        public int RemoveDuplicates(int[] nums)
+        {
+            int i = 0;
+            foreach (int num in nums)
+            {
+                if (i < 2 || nums[i - 2] < num)
+                {
+                    nums[i] = num;
+                    i++;
+                }
+            }
+            return i;
+        }
 
 
         // --------------------------------- Main ---------------------------------
