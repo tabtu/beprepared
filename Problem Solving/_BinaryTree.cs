@@ -1,25 +1,3 @@
-/*
- * Binary Tree
- * 
- * 
- * 
- * 1, 
- *    - 
- * 
- * 算法模板:
- * ---------------------------------
-
- * ---------------------------------
- * 
- * Problems:
- * - 
- * 
- */
-
-
-
-
-
 using System;
 using System.Linq;
 using System.Collections.Generic;
@@ -123,24 +101,64 @@ namespace coding
             }
         }
 
+        public Node swapLeftRight(Node node)
+        {
+            if (node.left != null)
+            {
+                node.left = swapLeftRight(node.left);
+            }
+            if (node.right != null)
+            {
+                node.right = swapLeftRight(node.right);
+            }
+            Node tmp = node.left;
+            node.left = node.right;
+            node.right = tmp;
+            return node;
+        }
+
         public int[] levelorderTraversal(Node node)
         {
-            IList<int> result = new List<int>();
+            Queue<int> queue = new Queue<int>();
             if (node != null)
             {
-                Queue<Node> queue = new Queue<Node>();
-                queue.Enqueue(node);
-                while (queue.Count > 0)
+                Queue<Node> queue2 = new Queue<Node>();
+                queue2.Enqueue(node);
+                while (queue2.Count > 0)
                 {
-                    Node nd = queue.Dequeue();
-                    result.Add(nd.data);
-                    if (nd.left != null)
+                    Node x = queue2.Dequeue();
+                    queue.Enqueue(x.data);
+                    if (x.left != null)
                     {
-                        queue.Enqueue(nd.left);
+                        queue2.Enqueue(x.left);
                     }
-                    if (nd.right != null)
+                    if (x.right != null)
                     {
-                        queue.Enqueue(nd.right);
+                        queue2.Enqueue(x.right);
+                    }
+                }
+            }
+            return queue.ToArray();
+        }
+
+        public int[] levelorderTraversal_LEVEL(Node node)
+        {
+            Queue<int> queue = new Queue<int>();
+            if (node != null)
+            {
+                Queue<Node> queue2 = new Queue<Node>();
+                queue2.Enqueue(node);
+                while (queue2.Count > 0)
+                {
+                    Node x = queue2.Dequeue();
+                    queue.Enqueue(x.level);
+                    if (x.left != null)
+                    {
+                        queue2.Enqueue(x.left);
+                    }
+                    if (x.right != null)
+                    {
+                        queue2.Enqueue(x.right);
                     }
                 }
             }
@@ -353,7 +371,7 @@ namespace coding
         }
 
         /// <summary>
-        /// Returns the number of nodes in the subtree less than data.
+        /// Returns the number of nodes in the subtree less than key.
         /// </summary>
         /// <param name="node"></param>
         /// <param name="data"></param>
@@ -378,7 +396,6 @@ namespace coding
             if (contains(node, hi)) return rank(node, hi) - rank(node, lo) + 1;
             else return rank(node, hi) - rank(node, lo);
         }
-
 
 
 
@@ -449,14 +466,6 @@ namespace coding
             return null;
         }
 
-        public bool isBST(Node node, int? min, int? max)
-        {
-            if (node == null) return true;
-            if (min != null && node.data <= min) return false;
-            if (max != null && node.data >= max) return false;
-            return isBST(node.left, min, node.data) && isBST(node.right, node.data, max);
-        }
-
         public int minValue(Node node)
         {
             Node current = node;
@@ -491,11 +500,18 @@ namespace coding
             return maxNode(node.right);
         }
 
-
+        public bool isBST(Node node, int? min, int? max)
+        {
+            if (node == null) return true;
+            if (min != null && node.data <= min) return false;
+            if (max != null && node.data >= max) return false;
+            return isBST(node.left, min, node.data) && isBST(node.right, node.data, max);
+        }
 
 
 
         // --------------------------------- AVL ---------------------------------
+
         private int height(Node node)
         {
             if (node == null) return -1;
@@ -621,6 +637,8 @@ namespace coding
             return balance(node);
         }
 
+
+
         /// <summary>
         /// Checks if AVL property is consistent in the subtree.
         /// </summary>
@@ -677,24 +695,64 @@ namespace coding
 
 
 
-        // --------------------------------- SOLUTIONS ---------------------------------
-        /* 
-         * Calculate the depth of left and right, check balance.
+        //--------------------------------- Red-Black ---------------------------------
+
+
+        /*
+         * 
+         * 
+         * 
+         */
+        public int MaxPathSum(Node root)
+        {
+            MaxPathSum_DFS(root);
+            return sum;
+        }
+        private int sum = int.MinValue;
+        private int MaxPathSum_DFS(Node node)
+        {
+            if (node == null) return 0;
+
+            int left = MaxPathSum_DFS(node.left);
+            if (left < 0) left = 0;  // dismiss if < 0
+
+            int right = MaxPathSum_DFS(node.right);
+            if (right < 0) right = 0;  // dismiss if < 0
+
+            // case : left + parent + right
+            int lnr_sum = left + node.data + right;
+
+            // sum to result
+            sum = Math.Max(sum, lnr_sum);
+
+            int ret = node.data + Math.Max(left, right);
+            return ret;
+        }
+
+
+
+
+        /*
+         *
+         *
+         *
+         *
+         *
          */
         bool isBalanced(Node root)
         {
-            return dfs(root) >= 0;
+            return heightDiff_DFS(root) >= 0;
         }
-        public int dfs(Node root)
+        public int heightDiff_DFS(Node root)
         {
             if (root == null)
             {
                 return 0;
             }
             // height of left tree
-            int left_height = dfs(root.left);
+            int left_height = heightDiff_DFS(root.left);
             // height of right tree
-            int right_height = dfs(root.right);
+            int right_height = heightDiff_DFS(root.right);
 
             // height difference between left and right should be less than 1
             if (Math.Abs(left_height - right_height) > 1 || left_height == -1 || right_height == -1)
@@ -707,25 +765,34 @@ namespace coding
         }
 
 
-        /* ---------------------------------
-         * Find the max sum of sub binary search tree.
+
+
+
+
+
+        /*
+         * 
+         * 
+         * 
+         * 
+         * 
          */
         private int maxSumValue;
         public int maxSumBST(Node root)
         {
             maxSumValue = 0;
-            findMaxSum(root);
+            findMaxSumBST(root);
             return maxSumValue;
         }
         //int[]{isBST(0/1), largest, smallest, sum}
-        public int[] findMaxSum(Node node)
+        public int[] findMaxSumBST(Node node)
         {
             if (node == null)
             {
                 return new int[] { 1, int.MinValue, int.MaxValue, 0 };
             }
-            int[] left = findMaxSum(node.left);
-            int[] right = findMaxSum(node.right);
+            int[] left = findMaxSumBST(node.left);
+            int[] right = findMaxSumBST(node.right);
             bool isBST = left[0] == 1 && right[0] == 1 && node.data > left[1] && node.data < right[2];
             int sum = node.data + left[3] + right[3];
             if (isBST)
@@ -736,30 +803,42 @@ namespace coding
         }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         //static void Main(string[] args)
         //{
-        //int n = 12;
-        //_BinaryTree bt = new _BinaryTree();
-        //int[] lst;
-        //_BinaryTree.Node root = new _BinaryTree.Node(0);
-        //for (int i = 1; i < n; i++)
-        //{
-        //    root = bt.insertAVL(root, i);
-        //}
+        //    Node root = new Node(0);
+        //    Node l = new Node(1);
+        //    Node r = new Node(2);
+        //    root.left = l;
+        //    root.right = r;
+        //    Node ll = new Node(3);
+        //    l.left = ll;
+        //    Node lr = new Node(4);
+        //    l.right = lr;
+        //    Node lll = new Node(9);
+        //    lr.left = lll;
 
-        //lst = bt.preorderTraversal(root);
-        //foreach (int i in lst)
-        //{
-        //    Console.Write(i + " ");
-        //}
-        //Console.WriteLine();
 
-        //lst = bt.inorderTraversal(root);
-        //foreach (int i in lst)
-        //{
-        //    Console.Write(i + " ");
-        //}
-        //Console.WriteLine();
+        //    postorderTraversal(root);
+        //    Console.WriteLine();
+        //    markLevel(root);
+
         //}
     }
 }

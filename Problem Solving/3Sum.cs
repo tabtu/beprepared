@@ -60,7 +60,8 @@ public class Solution
         Array.Sort(nums);
         return kSum(nums, target, 4, 0);
     }
-    private List<List<int>> kSum(int[] nums, int target, int k, int index)
+
+    private List<List<int>> kSum(int[] nums, int target, int k, int index = 0)
     {
         List<List<int>> res = new List<List<int>>();
         if (index >= len)

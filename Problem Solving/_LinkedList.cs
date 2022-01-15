@@ -5,11 +5,11 @@ namespace coding
 {
     public class _LinkedList
     {
-        public class ListNode
+        public class Node
         {
             public int val;
-            public ListNode next;
-            public ListNode(int val = 0, ListNode next = null)
+            public Node next;
+            public Node(int val = 0, Node next = null)
             {
                 this.val = val;
                 this.next = next;
@@ -26,9 +26,9 @@ namespace coding
          * - merge 2 sorted linkedlists
          * 
          */
-        public ListNode MergeKLists(ListNode[] lists)
+        public Node MergeKLists(Node[] lists)
         {
-            // ListNode result = null;
+            // Node result = null;
             // for (int i = 0; i < lists.Length; i++) {
             //     result = merge2Lists(lists[i], result);
             // }
@@ -37,24 +37,22 @@ namespace coding
             if (lists.Length == 0) return null;
             return mergeLists(lists, 0, lists.Length - 1);
         }
-
-        public ListNode mergeLists(ListNode[] lists, int st, int ed)
+        public Node mergeLists(Node[] lists, int st, int ed)
         {
             if (st == ed) return lists[st];
             else if (st < ed)
             {
                 int mid = (ed - st) / 2 + st;
-                ListNode left = mergeLists(lists, st, mid);
-                ListNode right = mergeLists(lists, mid + 1, ed);
+                Node left = mergeLists(lists, st, mid);
+                Node right = mergeLists(lists, mid + 1, ed);
                 return merge2Lists(left, right);
             }
             else return null;
         }
-
-        public ListNode merge2Lists(ListNode l0, ListNode l1)
+        public Node merge2Lists(Node l0, Node l1)
         {
-            ListNode head = new ListNode(0);
-            ListNode cur = head;
+            Node head = new Node(0);
+            Node cur = head;
             while (l0 != null && l1 != null)
             {
                 if (l0.val < l1.val)
@@ -85,6 +83,44 @@ namespace coding
             return head.next;
         }
 
+        /*
+         * 最小堆(最小优先队列)完成算法
+         * - 堆定义元数据为 <Node, Node.val> 最小堆
+         * - 从堆顶取元数据, 将推出节点的下一位节点放回堆
+         * - 每次从堆中取出元素均为K个链表最小值, 直到所有链表均为空
+         */
+        public Node MergeKLists2(Node[] lists)
+        {
+            if (lists.Length == 0) return null;
+            // 虚拟头结点
+            Node dummy = new Node(-1);
+            Node p = dummy;
+            // core 6.0
+            PriorityQueue<Node, int> pq = new PriorityQueue<Node, int>();
+
+            // 将 k 个链表的头结点加入最小堆
+            foreach (Node head in lists)
+            {
+                if (head != null)
+                    pq.Enqueue(head, head.val);
+            }
+
+            while (pq.Count > 0)
+            {
+                // 获取最小节点，接到结果链表中
+                Node node = pq.Dequeue();
+                p.next = node;
+                if (node.next != null)
+                {
+                    pq.Enquque(node.next);
+                }
+                // p 指针不断前进
+                p = p.next;
+            }
+            return dummy.next;
+        }
+
+
 
 
         /*
@@ -97,9 +133,9 @@ namespace coding
          * - remove slow.next pointer
          * 
          */
-        public ListNode RemoveNthFromEnd(ListNode head, int n)
+        public Node RemoveNthFromEnd(Node head, int n)
         {
-            ListNode fast = head, slow = head;
+            Node fast = head, slow = head;
             for (int i = 0; i < n; i++) fast = fast.next;
             if (fast == null) return head.next;
             while (fast.next != null)
@@ -135,10 +171,10 @@ namespace coding
          * Output: tail connects to node index 0
          * Explanation: There is a cycle in the linked list, where tail connects to the first node.
          */
-        public ListNode DetectCycle(ListNode head)
+        public Node DetectCycle(Node head)
         {
-            ListNode slow = head;
-            ListNode fast = head;
+            Node slow = head;
+            Node fast = head;
 
             while (fast != null && fast.next != null)
             {
@@ -146,7 +182,7 @@ namespace coding
                 slow = slow.next;
                 if (fast == slow)
                 {
-                    ListNode slow2 = head;
+                    Node slow2 = head;
                     while (slow2 != slow)
                     {
                         slow = slow.next;
@@ -170,13 +206,13 @@ namespace coding
          * Output: [4,5,1,2,3]
          * 
          */
-        public ListNode RotateRight(ListNode head, int k)
+        public Node RotateRight(Node head, int k)
         {
             if (head == null || k == 0)
             {
                 return head;
             }
-            ListNode p = head;
+            Node p = head;
             int len = 1;
             while (p.next != null)
             {

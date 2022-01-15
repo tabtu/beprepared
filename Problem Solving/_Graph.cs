@@ -82,20 +82,16 @@ TR bfs(T root) {
     Queue<T> queue = new Queue<T>();
     queue.Enqueue(root);
     paths += root;
-    int level = 1;
 
     while (queue.Count > 0) {
-        T problem = queue.Dequeue();
+        // if (pahts == /target/) return paths;
 
-        if (pahts == /target/) return paths;
+        T problem = queue.Dequeue();
 
         for (options in problem) {
             T subProblem = func(problem, options);
             queue.Enqueue(T subProblem)
         }
-
-        // next level mark
-        level++;
     }
 }
  * ---------------------------------
