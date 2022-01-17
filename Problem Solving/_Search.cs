@@ -16,7 +16,7 @@ int binary_search(T[] array, T target, int left, int right) {
             left = mid + 1;
         }
         else {  // target
-            ret = mid;
+            result = mid;
             break;
         }
     }
@@ -57,11 +57,46 @@ namespace coding
     public class _Search
     {
         // --------------------------------- Binary Search ---------------------------------
+        public int binary_search_lp(int[] array, int target, int left, int right)
+        {
+            int result = -1;  // initial
+            while (left < right)
+            {
+                int mid = left + (right - left) / 2;
+                if (target < array[mid])
+                {  // left
+                    right = mid - 1;
+                }
+                else if (array[mid] < target)
+                {  // right
+                    left = mid + 1;
+                }
+                else
+                {  // target
+                    result = mid;
+                    break;
+                }
+            }
+            return result;
+        }
 
-
-
-
-
+        int binary_search_rc(int[] array, int target, int left, int right)
+        {
+            if (left > right) return -1;  // boundary
+            int mid = left + (right - left) / 2;
+            if (target < array[mid])
+            {  // left
+                return binary_search_rc(array, target, left, mid - 1);
+            }
+            else if (array[mid] < target)
+            {  // right
+                return binary_search_rc(array, target, mid + 1, right);
+            }
+            else
+            {
+                return mid;
+            }
+        }
 
 
         // --------------------------------- SOLUTIONS ---------------------------------
@@ -122,6 +157,57 @@ namespace coding
         }
 
 
+        /*
+         * https://leetcode.com/problems/find-minimum-in-rotated-sorted-array
+         * 
+         * Find Minimum in Rotated Sorted Array
+         * 
+         */
+        public int FindMin(int[] nums)
+        {
+            int l = 0;
+            int r = nums.Length - 1;
+
+            while (l < r)
+            {
+                int mid = l + (r - l) / 2;
+                if (nums[r] < nums[mid])
+                {
+                    l = mid + 1;
+                }
+                else
+                {
+                    r = mid;
+                }
+            }
+            return nums[r];
+        }
+
+
+        /*
+         * https://leetcode.com/problems/find-peak-element/
+         * 
+         * Find Peak Element
+         * 
+         */
+        public int FindPeakElement(int[] nums)
+        {
+            return peak(nums, 0, nums.Length - 1);
+        }
+        private int peak(int[] a, int l, int r)
+        {
+            if (l > r) return -1;
+
+            int mid = l + (r - l) / 2;
+            if ((mid == 0 || a[mid - 1] < a[mid]) && (mid == a.Length - 1 || a[mid] > a[mid + 1])) return mid;
+
+            if (a[mid] < a[mid + 1])
+                return peak(a, mid + 1, r);
+            else
+                return peak(a, l, mid - 1);
+        }
+
+
 
         /*
          * https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
@@ -152,7 +238,6 @@ namespace coding
             int rightIndex = search(nums, target + 1);
             return new int[] { leftIndex, rightIndex - 1 };
         }
-
         /**
          * 寻找第一个>=目标值的索引, 找不到则返回数组长度
          */

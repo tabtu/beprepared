@@ -256,6 +256,30 @@ namespace coding
         }
 
 
+        /*
+         * https://leetcode.com/problems/minimum-size-subarray-sum/
+         * 
+         * Minimum length of a sub-array, when sum is greater than target
+         * 
+         */
+        public int MinSubArrayLen(int target, int[] nums)
+        {
+            if (nums.Length == 0) return 0;
+            int result = int.MaxValue;
+            int i = 0, j = 0;
+            int cur = 0;
+            while (j < nums.Length)
+            {
+                cur += nums[j++];
+                while (cur >= target)
+                {
+                    result = Math.Min(result, j - i);
+                    cur -= nums[i++];
+                }
+            }
+            return result == int.MaxValue ? 0 : result;
+        }
+
         // --------------------------------- Main ---------------------------------
         //static void Main(string[] args)
         //{

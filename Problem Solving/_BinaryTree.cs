@@ -699,8 +699,7 @@ namespace coding
 
 
         /*
-         * 
-         * 
+         * Find the max sum path in a binary tree.
          * 
          */
         public int MaxPathSum(Node root)
@@ -733,11 +732,8 @@ namespace coding
 
 
         /*
-         *
-         *
-         *
-         *
-         *
+         * Check balance for a tree
+         * 
          */
         bool isBalanced(Node root)
         {
@@ -771,10 +767,7 @@ namespace coding
 
 
         /*
-         * 
-         * 
-         * 
-         * 
+         * Find a sub tree which have the maximum sum value
          * 
          */
         private int maxSumValue;
@@ -804,14 +797,50 @@ namespace coding
 
 
 
+        /*
+         * Return a right side view for a tree (DFS)
+         * 
+         */
+        public List<int> rightSideView(Node root)
+        {
+            List<int> result = new List<int>();
+            rightView(root, result, 0);
+            return result;
+        }
+        public void rightView(Node curr, List<int> result, int currDepth)
+        {
+            if (curr == null)
+            {
+                return;
+            }
+            if (currDepth == result.Count)
+            {
+                result.Add(curr.data);
+            }
+
+            rightView(curr.right, result, currDepth + 1);
+            rightView(curr.left, result, currDepth + 1);
+
+        }
 
 
 
 
-
-
-
-
+        /*
+         * https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
+         * 
+         * LCA 最近公共祖先
+         * 
+         */
+        public Node LowestCommonAncestor(Node root, Node p, Node q)
+        {
+            if (root == null || root.Equals(p) || root.Equals(q)) return root;
+            Node left = LowestCommonAncestor(root.left, p, q);
+            Node right = LowestCommonAncestor(root.right, p, q);
+            if (left == null) return right;
+            if (right == null) return left;
+            return root;
+        }
 
 
 

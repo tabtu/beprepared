@@ -68,6 +68,51 @@ namespace coding
             }
         }
 
+        /// <summary>
+        /// Bucket sort
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <param name="bucketSize"></param>
+        /// <returns></returns>
+        public int[] BucketSort(int[] nums)
+        {
+            /*桶排序：
+                先找到追到最大最小的值，（假设最大max，最小min）
+                桶数的计算：(max - min) / arr.Length + 1。
+                然后将需要排序的数值一一对应放到各个所属范围的桶里面，
+                然后把每个桶里面的数值进行基本排序，最后把排序后的数值按次序拿出来
+             */
+            List<int> numList = new List<int>();
+            int min = nums.Min();
+            int max = nums.Max();
+            // 计算桶的数量
+            int b_num = (max - min) / nums.Length + 1;
+            // 定义桶
+            List<int>[] buckets = new List<int>[b_num];
+            // 初始化桶
+            for (int i = 0; i < b_num; i++)
+            {
+                buckets[i] = new List<int>();
+            }
+            //分配待排序的数到各个桶里
+            for (int i = 0; i < nums.Length; i++)
+            {
+                int index = (nums[i] - min) / nums.Length;
+                buckets[index].Add(nums[i]);
+            }
+            //最后把各个桶里的数据拿出
+            for (int i = 0; i < b_num; i++)
+            {
+                buckets[i].Sort();
+                for (int j = 0; j < buckets[i].Count; j++)
+                {
+                    numList.Add(buckets[i][j]);
+                }
+            }
+            int[] arr = numList.ToArray();
+            return arr;
+        }
+
 
 
 
