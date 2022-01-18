@@ -71,8 +71,7 @@ namespace coding
         /// <summary>
         /// Bucket sort
         /// </summary>
-        /// <param name="arr"></param>
-        /// <param name="bucketSize"></param>
+        /// <param name="nums"></param>
         /// <returns></returns>
         public int[] BucketSort(int[] nums)
         {
@@ -531,6 +530,41 @@ namespace coding
                     swap(nums, i, two);
                 }
             }
+        }
+
+
+
+        /*
+         * https://leetcode.com/problems/h-index/
+         * 
+         * H index
+         * 
+         */
+        public int HIndex(int[] citations)
+        {
+            int n = citations.Length;
+            int[] buckets = new int[n + 1];
+            foreach (int c in citations)
+            {
+                if (c >= n)
+                {
+                    buckets[n]++;
+                }
+                else
+                {
+                    buckets[c]++;
+                }
+            }
+            int count = 0;
+            for (int i = n; i >= 0; i--)
+            {
+                count += buckets[i];
+                if (count >= i)
+                {
+                    return i;
+                }
+            }
+            return 0;
         }
 
 

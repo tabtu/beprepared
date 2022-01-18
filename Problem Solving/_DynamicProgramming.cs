@@ -1,4 +1,4 @@
-/*
+/* ------------------------------------------------------------------
  * Dynamic Programming
  * 
  * 1, Declare the defination of matrix/array, the meaning of subscript. 
