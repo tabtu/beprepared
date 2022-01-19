@@ -2,7 +2,7 @@
 
 Handwrite libraries to help understand basic data structure and algorithm
 
-- <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/_Arrays_.cs">Arrays</a>
+- <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/_Array.cs">Arrays</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/_BinaryTree.cs">BinaryTree</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/_DynamicProgramming.cs">DynamicProgramming</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/_Graph.cs">Graph</a>
