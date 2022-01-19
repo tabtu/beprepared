@@ -209,6 +209,7 @@ class ForeignCurrency
         return maxGcd;
     }
 
+    // greatest common divisor
     private static int Gcd(int a, int b)
     {
         if (b == 0) return a;

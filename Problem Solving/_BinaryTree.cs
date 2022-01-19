@@ -45,6 +45,22 @@ namespace coding
 
             // Red-Black
             public bool color;  // color of parent
+
+            public Node(int[] preorder, int[] inorder, bool isPre = true)
+            {
+                Node root = new Node(0);
+
+                if (isPre)
+                {
+
+                }
+                else
+                {
+
+                }
+
+                return root;
+            }
         }
 
 
@@ -52,7 +68,6 @@ namespace coding
         //private static Node root;
         //// node numbers_
         //private int count;
-
 
         public int[] preorderTraversal(Node node)
         {
@@ -280,6 +295,60 @@ namespace coding
             return root;
         }
 
+        public Node buildTree_preIn(int[] preorder, int[] inorder)
+        {
+            if (preorder == null || preorder.Length == 0)
+            {
+                return null;
+            }
+            Node root = new Node(preorder[0]);
+            Stack<Node> stack = new Stack<Node>();
+            stack.Push(root);
+            int inorderIndex = 0;
+            for (int i = 1; i < preorder.Length; i++)
+            {
+                int preorderVal = preorder[i];
+                Node node = stack.Peek();
+                if (node.data != inorder[inorderIndex])
+                {
+                    node.left = new Node(preorderVal);
+                    stack.Push(node.left);
+                }
+                else
+                {
+                    while (stack.Count > 0 && stack.Peek().data == inorder[inorderIndex])
+                    {
+                        node = stack.Pop();
+                        inorderIndex++;
+                    }
+                    node.right = new Node(preorderVal);
+                    stack.Push(node.right);
+                }
+            }
+            return root;
+        }
+
+        private Dictionary<int, int> memo = new Dictionary<int, int>();
+        private int[] post;
+        public Node buildTree_postIn(int[] inorder, int[] postorder)
+        {
+            for (int i = 0; i < inorder.Length; i++) memo.Add(inorder[i], i);
+            post = postorder;
+            Node root = buildTree(0, inorder.Length - 1, 0, post.Length - 1);
+            return root;
+        }
+        public Node buildTree(int ii, int ie, int ps, int pe)
+        {
+            if (ie < ii || pe < ps) return null;
+            // create root
+            int root = post[pe];
+            int ri = memo.GetValueOrDefault(root);
+            // recursive creation
+            Node node = new Node(root);
+            node.left = buildTree(ii, ri - 1, ps, ps + ri - ii - 1);
+            node.right = buildTree(ri + 1, ie, ps + ri - ii, pe - 1);
+            return node;
+        }
 
 
 
@@ -830,6 +899,8 @@ namespace coding
      * 层序遍历 --- levelorderTraversal
      * 标记层数 --- markLevel
      * 二叉树序列化 --- serialize, deserialize
+     * 前序中序构造 --- buildTree_preIn
+     * 后序中序构造 --- buildTree_postIn
      * 
      * --- BST ---
      * 二分查询 --- search, get, contains
