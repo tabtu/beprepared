@@ -1,5 +1,7 @@
 /* https://leetcode.com/problems/minimum-path-sum/
  * 
+ * Minimum Path Sum
+ * 
  * DP
  * start at 0,0 and end at m-1,n-1;
  * initialize values when i = 0 or j = 0;
@@ -52,6 +54,8 @@ public class Solution
         return dp[m - 1, n - 1];
     }
 
+
+
     // RC
     private static int MinPathSum_RC(int[][] grid)
     {
@@ -85,6 +89,7 @@ public class Solution
     }
 
 
+
     // DP with path log
     private struct Node
     {
@@ -104,7 +109,7 @@ public class Solution
         int n = grid[0].Length;
         KeyValuePair<int, IList<Node>>[,] path = new KeyValuePair<int, IList<Node>>[m, n];
 
-        // i ==0 && j == 0;
+        // i == 0 && j == 0;
         IList<Node> p0 = new List<Node>();
         p0.Add(new Node(0, 0));
         path[0, 0] = new KeyValuePair<int, IList<Node>>(grid[0][0], p0);

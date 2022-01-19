@@ -28,7 +28,7 @@ class Result
 
     public static List<int> acmTeam(List<string> topic)
     {
-                int a = 0;
+        int a = 0;
         int b = 0;
         for (int i = 0; i < topic.Count - 1; i++)
         {

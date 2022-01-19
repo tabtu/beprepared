@@ -99,7 +99,6 @@ class ForeignCurrency
             // Cut Branches Recursive, find the array for next generation
             int[] next = (from st in denom where st >= denom[i] select st).ToArray();
             getExactChange_Backtrack(target, pts, next);
-
             // Normal Recursive Call
             //getExactChange_Backtrack(target, pts, denom);
 
