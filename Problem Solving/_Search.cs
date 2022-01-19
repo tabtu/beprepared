@@ -1,53 +1,3 @@
-/*
- * Binary Search
- * 
- * 算法模板:
- * ---------------------------------
-
- // loop
-int binary_search(T[] array, T target, int left, int right) {
-    int result = -1;  // initial
-    while (left < right) {
-        int mid = left + (right - left) / 2;
-        if (target < array[mid]) {  // left
-            right = mid - 1;
-        }
-        else if (array[mid] < target) {  // right
-            left = mid + 1;
-        }
-        else {  // target
-            result = mid;
-            break;
-        }
-    }
-    return result;
-}
-
-// recursive
-int binary_search(T[] array, T target, int left, int right) {
-    if (left > right) return -1;  // boundary
-    int mid = left + (right - left) / 2;
-    if (target < array[mid]) {  // left
-        return binary_search(array, target, left, mid - 1);
-    }
-    else if (array[mid] < target) {  // right
-        return binary_search(array, target, mid + 1, right);
-    }
-    else {
-        return mid;
-    }
-}
-
- * ---------------------------------
- * 
- */
-
-
-
-
-
-
-
 using System;
 
 namespace coding
@@ -55,30 +5,8 @@ namespace coding
     public class _Search
     {
         // --------------------------------- Binary Search ---------------------------------
-        public int binary_search_lp(int[] array, int target, int left, int right)
-        {
-            int result = -1;  // initial
-            while (left < right)
-            {
-                int mid = left + (right - left) / 2;
-                if (target < array[mid])
-                {  // left
-                    right = mid - 1;
-                }
-                else if (array[mid] < target)
-                {  // right
-                    left = mid + 1;
-                }
-                else
-                {  // target
-                    result = mid;
-                    break;
-                }
-            }
-            return result;
-        }
 
-        int binary_search_rc(int[] array, int target, int left, int right)
+        public int binarySearch_rc(int[] array, int target, int left, int right)
         {
             if (left > right) return -1;  // boundary
             int mid = left + (right - left) / 2;
@@ -95,6 +23,59 @@ namespace coding
                 return mid;
             }
         }
+
+        public int binarySearch_lp(int[] nums, int target)
+        {
+            int left = 0;
+            int right = nums.Length - 1;
+            while (left <= right)
+            {
+                int mid = (left + right) / 2;
+                if (nums[mid] < target) left = mid + 1;
+                else if (nums[mid] > target) right = mid - 1;
+                else return mid;  // (nums[mid] == target)
+            }
+            return -1;
+        }
+
+        // 寻找左侧边界的二分搜索，开区间写法
+        public int left_bound(int[] nums, int target)
+        {
+            int left = 0;
+            int right = nums.Length;
+            if (right == 0) return -1;
+            while (left < right)
+            {
+                int mid = (left + right) / 2;
+                if (nums[mid] < target) left = mid + 1;
+                else if (nums[mid] > target) right = mid;
+                else right = mid;  // 锁定左侧边界
+            }
+            if (left >= nums.Length || nums[left] != target)
+                return -1;
+            return left;  // 
+        }
+
+        // 寻找右侧边界的二分搜索，开区间写法
+        public int right_bound(int[] nums, int target)
+        {
+            int left = 0;
+            int right = nums.Length;
+            if (right == 0) return -1;
+            while (left < right)
+            {
+                int mid = (left + right) / 2;
+                if (nums[mid] < target) left = mid + 1;
+                else if (nums[mid] > target) right = mid;
+                else left = mid + 1;  // 锁定右侧边界
+            }
+            if (left >= nums.Length || nums[left] != target)
+                return -1;
+            return left - 1;  // 
+        }
+
+
+
 
 
         // --------------------------------- SOLUTIONS ---------------------------------
@@ -370,16 +351,17 @@ namespace coding
         // }
     }
     /* 
+     * 二分递归 --- binary_search_rc
+     * 二分循环 --- binarySearch_lp
+     * 左边界开区间 --- left_bound
+     * 右边界开区间 --- right_bound
      * 
-     * 桶排序 --- bucketSort
-     * 堆排序 --- heapSort
-     * 合并排序 --- mergeSort
-     * 快速排序 --- quickSort
-     * 2路快速排序 --- partition2Way
-     * 3路快速排序 --- quickSort3Way
-     * 
-     * 查找第K大的数 --- findKthLargest
-     * 排序(只有三种元素) --- sortColors
-     * 论文指数 --- HIndex
+     * 搜索旋转排序数组 --- searchInRotatedSorted
+     * 寻找旋转排序数组中的最小值 --- FindMin
+     * 寻找峰值 --- FindPeakElement
+     * 在排序数组中查找元素的第一个和最后一个位置 --- SearchRange
+     * H指数 --- HIndex
+     * 最长递增子序列 --- LengthOfLIS
+     * 最大子数组和 --- maxSequence
      */
 }
