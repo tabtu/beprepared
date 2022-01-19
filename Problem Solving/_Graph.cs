@@ -84,7 +84,7 @@ TR bfs(T root) {
     paths += root;
 
     while (queue.Count > 0) {
-        // if (pahts == /target/) return paths;
+        // if (paths == /target/) return paths;
 
         T problem = queue.Dequeue();
 
@@ -102,13 +102,20 @@ TR bfs(T root) {
  * - Serialize and Deserialize Binary Tree
  * - https://leetcode.com/problems/jump-game-ii/
  * - https://leetcode-cn.com/problems/interleaving-string/
- * 
- * spining tree
- * 
- * 
- * 
- * 
  */
+
+
+
+
+
+/* ------------------------------------------------------------------
+* Spining Tree ---------------------------------
+* 
+* 
+* 
+* 
+* 
+*/
 
 using System;
 using System.Collections.Generic;
@@ -117,10 +124,6 @@ namespace coding
 {
     public class _Graph
     {
-
-
-
-
         //static void Main(string[] args)
         //{
         //}

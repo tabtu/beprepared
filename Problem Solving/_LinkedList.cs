@@ -18,8 +18,7 @@ namespace coding
 
 
 
-        /*
-         * https://leetcode.com/problems/merge-k-sorted-lists/
+        /*  https://leetcode.com/problems/merge-k-sorted-lists/
          * 
          * Merge sorted linkedlist array, arrary length of K.
          * - use merge sort on array
@@ -122,9 +121,7 @@ namespace coding
 
 
 
-
-        /*
-         * https://leetcode.com/problems/remove-nth-node-from-end-of-list/
+        /* https://leetcode.com/problems/remove-nth-node-from-end-of-list/
          * 
          * Delete the Nth node from end of the list.
          * - move fast pointer N times
@@ -149,8 +146,7 @@ namespace coding
 
 
 
-        /* 
-         * https://leetcode.com/problems/linked-list-cycle-ii/
+        /* https://leetcode.com/problems/linked-list-cycle-ii/
          * 
          * first X slow: found a circle
          * slow2 = head
@@ -175,14 +171,16 @@ namespace coding
         {
             Node slow = head;
             Node fast = head;
-
+            // 快指针作为边界
             while (fast != null && fast.next != null)
             {
                 fast = fast.next.next;
                 slow = slow.next;
+                // 第一次相遇
                 if (fast == slow)
                 {
                     Node slow2 = head;
+                    // 调整为相同速度 第二次相遇
                     while (slow2 != slow)
                     {
                         slow = slow.next;
@@ -196,15 +194,12 @@ namespace coding
 
 
 
-        /* 
-         * https://leetcode.com/problems/rotate-list
+        /* https://leetcode.com/problems/rotate-list
          * 
          * Given the head of a linked list, rotate the list to the right by k places.
-         * 
          * Example 1:
          * Input: head = [1,2,3,4,5], k = 2
          * Output: [4,5,1,2,3]
-         * 
          */
         public Node RotateRight(Node head, int k)
         {
@@ -214,17 +209,21 @@ namespace coding
             }
             Node p = head;
             int len = 1;
+            // 计算链表长度
             while (p.next != null)
             {
                 p = p.next;
                 len++;
             }
+            // 回环连接切割点到头节点
             p.next = head;
             k %= len;
+            // 移动到切割点
             for (int i = 0; i < len - k; i++)
             {
                 p = p.next;
             }
+            // 切割
             head = p.next;
             p.next = null;
             return head;
@@ -232,169 +231,6 @@ namespace coding
 
 
 
-        /*
-         * https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/
-         * 
-         * Remove duplicates elements in a sorted array, only leave maximum 2 same numbers. 
-         * Example 1:
-         * Input: nums = [1,1,1,1,1,1,2,2,2,2,2,2,2,3,4,4,4,5,5]
-         * Output: 5, nums = [1,1,2,2,3,4,4,5,5]
-         * 
-         */
-        public int RemoveDuplicates(int[] nums)
-        {
-            int i = 0;
-            foreach (int num in nums)
-            {
-                if (i < 2 || nums[i - 2] < num)
-                {
-                    nums[i] = num;
-                    i++;
-                }
-            }
-            return i;
-        }
-
-
-        /*
-         * https://leetcode.com/problems/minimum-size-subarray-sum/
-         * 
-         * Minimum length of a sub-array, when sum is greater than target
-         * 
-         */
-        public int MinSubArrayLen(int target, int[] nums)
-        {
-            if (nums.Length == 0) return 0;
-            int result = int.MaxValue;
-            int i = 0, j = 0;
-            int cur = 0;
-            while (j < nums.Length)
-            {
-                cur += nums[j++];
-                while (cur >= target)
-                {
-                    result = Math.Min(result, j - i);
-                    cur -= nums[i++];
-                }
-            }
-            return result == int.MaxValue ? 0 : result;
-        }
-
-
-        /*
-         * https://leetcode-cn.com/problems/interval-list-intersections/
-         * 
-         * 区间列表的交集
-         * 
-         */
-        public int[][] IntervalIntersection(int[][] firstList, int[][] secondList)
-        {
-            List<int[]> res = new List<int[]>();
-            int a = 0, b = 0;
-            while (a < firstList.Length && b < secondList.Length)
-            {
-                // 确定左边界，两个区间左边界的最大值
-                int left = Math.Max(firstList[a][0], secondList[b][0]);
-                // 确定右边界，两个区间右边界的最小值
-                int right = Math.Min(firstList[a][1], secondList[b][1]);
-                // 左边界小于右边界则加入结果集
-                if (left <= right)
-                    res.Add(new int[] { left, right });
-                // 右边界更大的保持不动，另一个指针移动，继续比较
-                if (firstList[a][1] < secondList[b][1]) a++;
-                else b++;
-            }
-            // 将结果转为数组
-            return res.ToArray();
-        }
-
-
-        /* 
-         * https://leetcode.com/problems/merge-intervals/
-         * 
-         * 合并区间
-         * 
-         */
-        public int[][] MergeIntervals(int[][] intervals)
-        {
-            if (intervals.Length <= 1) return intervals;
-
-            // Sort by ascending starting point
-            Array.Sort<int[]>(intervals, (x, y) => x[0].CompareTo(y[0]));
-
-            List<int[]> result = new List<int[]>();
-            int[] newInterval = intervals[0];
-            result.Add(newInterval);
-            foreach (int[] interval in intervals)
-            {
-                // Overlapping intervals, move the end if needed
-                if (interval[0] <= newInterval[1])
-                {
-                    newInterval[1] = Math.Max(newInterval[1], interval[1]);
-                }
-                // Disjoint intervals, add the new interval to the list
-                else
-                {
-                    newInterval = interval;
-                    result.Add(newInterval);
-                }
-            }
-
-            return result.ToArray();
-        }
-
-
-
-
-        /* 
-         * https://leetcode.com/problems/pancake-sorting/
-         * 
-         * 烧饼排序
-         * 
-         */
-        public IList<int> PancakeSort(int[] arr)
-        {
-            res = new List<int>();
-            pancakeSort(arr, arr.Length);
-            return res;
-        }
-        // 记录反转操作序列
-        private List<int> res;
-        void pancakeSort(int[] arr, int n)
-        {
-            // base case
-            if (n == 1) return;
-
-            // 寻找最大饼的索引
-            int maxCake = 0;
-            int maxCakeIndex = 0;
-            for (int i = 0; i < n; i++)
-                if (arr[i] > maxCake)
-                {
-                    maxCakeIndex = i;
-                    maxCake = arr[i];
-                }
-
-            // 第一次翻转，将最大饼翻到最上面
-            pancakeReverse(arr, 0, maxCakeIndex);
-            res.Add(maxCakeIndex + 1);
-            // 第二次翻转，将最大饼翻到最下面
-            pancakeReverse(arr, 0, n - 1);
-            res.Add(n);
-
-            // 递归调用
-            pancakeSort(arr, n - 1);
-        }
-        void pancakeReverse(int[] arr, int i, int j)
-        {
-            while (i < j)
-            {
-                int temp = arr[i];
-                arr[i] = arr[j];
-                arr[j] = temp;
-                i++; j--;
-            }
-        }
 
 
         // --------------------------------- Main ---------------------------------
@@ -402,4 +238,11 @@ namespace coding
         //{
         //}
     }
+
+    /*
+     * 合并多个链表 --- MergeKLists(Merge), MergeKLists2(Heap)
+     * 删除末尾N个节点 --- RemoveNthFromEnd
+     * 循环指针起点 --- DetectCycle
+     * 向右回转 --- RotateRight
+     */
 }

@@ -68,12 +68,17 @@ namespace coding
             }
         }
 
+
+
+
+
+        // --------------------------------- Bucket Sort ---------------------------------
         /// <summary>
         /// Bucket sort
         /// </summary>
         /// <param name="nums"></param>
         /// <returns></returns>
-        public int[] BucketSort(int[] nums)
+        public int[] bucketSort(int[] nums)
         {
             /*桶排序：
                 先找到追到最大最小的值，（假设最大max，最小min）
@@ -102,7 +107,9 @@ namespace coding
             //最后把各个桶里的数据拿出
             for (int i = 0; i < b_num; i++)
             {
+                // 桶内排序
                 buckets[i].Sort();
+                // 合并桶
                 for (int j = 0; j < buckets[i].Count; j++)
                 {
                     numList.Add(buckets[i][j]);
@@ -117,7 +124,12 @@ namespace coding
 
 
         // --------------------------------- Heap Sort ---------------------------------
-        public void HeapSort(int[] arr)
+        /// <summary>
+        /// Heap sort
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <returns></returns>
+        public void heapSort(int[] arr)
         {
             int n = arr.Length;
 
@@ -135,7 +147,6 @@ namespace coding
         }
         private void shiftDown(int[] arr, int n, int k)
         {
-
             while (2 * k + 1 < n)
             {
                 //左孩子节点
@@ -156,6 +167,11 @@ namespace coding
 
 
         // --------------------------------- Merge Sort ---------------------------------
+        /// <summary>
+        /// Merge sort
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <returns></returns>
         public int[] mergeSort(int[] arr)
         {
             int[] res = new int[arr.Length];
@@ -240,6 +256,11 @@ namespace coding
 
 
         // --------------------------------- Quick Sort ---------------------------------
+        /// <summary>
+        /// Quick sort
+        /// </summary>
+        /// <param name="arr"></param>
+        /// <returns></returns>
         public int[] quickSort(int[] arr)
         {
             int[] result = new int[arr.Length];
@@ -404,9 +425,9 @@ namespace coding
             return true;
         }
 
+        // sorted by gap length of h
         private bool isHsorted(int[] a, int h)
         {
-            // is the array h-sorted
             for (int i = h; i < a.Length; i++)
                 if (a[i] < a[i - h]) return false;
             return true;
@@ -416,14 +437,10 @@ namespace coding
 
 
 
-
         // --------------------------------- SOLUTIONS ---------------------------------
 
-        /*
-         * https://leetcode.com/problems/kth-largest-element-in-an-array
-         * 
-         * Find the Kth largest number in an array
-         * 
+        /* https://leetcode.com/problems/kth-largest-element-in-an-array
+         * Find the Kth largest number in an array (partition)
          */
         public int findKthLargest(int[] nums, int k)
         {
@@ -451,7 +468,7 @@ namespace coding
                 }
             }
         }
-        /**
+        /*
          * 对数组 nums 的子区间 [left..right] 执行 partition 操作，返回 nums[left] 排序以后应该在的位置
          * 在遍历过程中保持循环不变量的定义：
          * nums[left + 1..j] < nums[left]
@@ -483,11 +500,8 @@ namespace coding
 
 
 
-        /*
-         * https://leetcode.com/problems/sort-colors/
-         * 
-         * array only have 0, 1, 2
-         * 
+        /* https://leetcode.com/problems/sort-colors/
+         * array only have 0, 1, 2 (merge)
          */
         public void sortColors(int[] nums)
         {
@@ -504,11 +518,11 @@ namespace coding
             // 循环终止条件是 i == two，那么循环可以继续的条件是 i < two
             // 为了保证初始化的时候 [0, zero) 为空，设置 zero = 0，
             // 所以下面遍历到 0 的时候，先交换，再加
-            int zero = 0;
+            int zero = 0;  // left
 
             // 为了保证初始化的时候 [two, len - 1] 为空，设置 two = len
             // 所以下面遍历到 2 的时候，先减，再交换
-            int two = len;
+            int two = len;  // right
             int i = 0;
             // 当 i == two 上面的三个子区间正好覆盖了全部数组
             // 因此，循环可以继续的条件是 i < two
@@ -534,11 +548,9 @@ namespace coding
 
 
 
-        /*
-         * https://leetcode.com/problems/h-index/
-         * 
-         * H index
-         * 
+        /* https://leetcode.com/problems/h-index/
+         * H index (至少N篇论文出现至少N次)
+         * 桶排序寻找桶中数量大于桶序号
          */
         public int HIndex(int[] citations)
         {
@@ -571,127 +583,6 @@ namespace coding
 
 
 
-        //public static int[] MergeSort(int[] a)
-        //{
-        //    int[] aux = new int[a.Length];
-        //    MergeSort(a, aux, 0, a.Length - 1);
-        //    return a;
-        //}
-        //private static void MergeSort(int[] a, int[] aux, int lo, int hi)
-        //{
-        //    if (hi <= lo) return;
-        //    int mid = lo + (hi - lo) / 2;
-        //    MergeSort(a, aux, lo, mid);
-        //    MergeSort(a, aux, mid + 1, hi);
-        //    merge(a, aux, lo, mid, hi);
-        //}
-        //private static int[] merge(int[] a, int[] aux, int lo, int mid, int hi)
-        //{
-        //    // copy to aux[]
-        //    for (int k = lo; k <= hi; k++)
-        //    {
-        //        aux[k] = a[k];
-        //    }
-        //    // merge back to a[]
-        //    int i = lo, j = mid + 1;
-        //    for (int k = lo; k <= hi; k++)
-        //    {
-        //        if (i > mid) a[k] = aux[j++];
-        //        else if (j > hi) a[k] = aux[i++];
-        //        else if (aux[j] < aux[i]) a[k] = aux[j++];
-        //        else a[k] = aux[i++];
-        //    }
-        //    return a;
-        //}
-
-
-
-        //public static int[] quickSort(int[] a)
-        //{
-        //    Random random = new Random();
-        //    random.Next(10, 50);
-        //    quickSort(a, 0, a.Length - 1);
-        //    return a;
-        //}
-        //// quicksort the subarray from a[lo] to a[hi]
-        //private static void quickSort(int[] a, int lo, int hi)
-        //{
-        //    if (hi <= lo) return;
-        //    int j = quickPartition(a, lo, hi);
-        //    quickSort(a, lo, j - 1);
-        //    quickSort(a, j + 1, hi);
-        //}
-        //// partition the subarray a[lo..hi] so that a[lo..j-1] <= a[j] <= a[j+1..hi]
-        //// and return the index j.
-        //private static int quickPartition(int[] a, int lo, int hi)
-        //{
-        //    int i = lo;
-        //    int j = hi + 1;
-        //    int v = a[lo];
-        //    while (true)
-        //    {
-        //        // find item on lo to swap
-        //        while (a[++i] < v)
-        //        {
-        //            if (i == hi) break;
-        //        }
-        //        // find item on hi to swap
-        //        while (v < a[--j])
-        //        {
-        //            if (j == lo) break;      // redundant since a[lo] acts as sentinel
-        //        }
-        //        // check if pointers cross
-        //        if (i >= j) break;
-        //        swap(a, i, j);
-        //    }
-        //    // put partitioning item v at a[j]
-        //    swap(a, lo, j);
-        //    // now, a[lo .. j-1] <= a[j] <= a[j+1 .. hi]
-        //    return j;
-        //}
-
-
-
-        ///// <summary>
-        ///// Quick sort (3 Way)
-        ///// </summary>
-        ///// <param name="a">array</param>
-        ///// <returns>sorted array</returns>
-        //public static int[] quick3WaySort(int[] a)
-        //{
-        //    quickSort3Way(a, 0, a.Length - 1);
-        //    return a;
-        //}
-        //// quicksort the subarray a[lo .. hi] using 3-way partitioning
-        //private static void quickSort3Way(int[] a, int lo, int hi)
-        //{
-        //    if (hi <= lo) return;
-        //    int lt = lo, gt = hi;
-        //    int v = a[lo];
-        //    int i = lo + 1;
-        //    while (i <= gt)
-        //    {
-        //        if (a[i] < v) swap(a, lt++, i++);
-        //        else if (a[i] > v) swap(a, i, gt--);
-        //        else i++;
-        //    }
-        //    // a[lo..lt-1] < v = a[lt..gt] < a[gt+1..hi]. 
-        //    quickSort3Way(a, lo, lt - 1);
-        //    quickSort3Way(a, gt + 1, hi);
-        //}
-        //private static swap(int[] arr, int i, int j)
-        //{
-        //    int t = arr[i];
-        //    arr[i] = arr[j];
-        //    arr[j] = t;
-        //}
-
-
-
-
-
-
-
         // --------------------------------- Main ---------------------------------
         // static void Main(string[] args)
         // {
@@ -703,4 +594,16 @@ namespace coding
         //     }
         // }
     }
+    /*
+     * 桶排序 --- bucketSort
+     * 堆排序 --- heapSort
+     * 合并排序 --- mergeSort
+     * 快速排序 --- quickSort
+     * 2路快速排序 --- partition2Way
+     * 3路快速排序 --- quickSort3Way
+     * 
+     * 查找第K大的数 --- findKthLargest
+     * 排序(只有三种元素) --- sortColors
+     * 论文指数 --- HIndex
+     */
 }

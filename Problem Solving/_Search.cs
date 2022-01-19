@@ -369,4 +369,17 @@ namespace coding
         //     }
         // }
     }
+    /* 
+     * 
+     * 桶排序 --- bucketSort
+     * 堆排序 --- heapSort
+     * 合并排序 --- mergeSort
+     * 快速排序 --- quickSort
+     * 2路快速排序 --- partition2Way
+     * 3路快速排序 --- quickSort3Way
+     * 
+     * 查找第K大的数 --- findKthLargest
+     * 排序(只有三种元素) --- sortColors
+     * 论文指数 --- HIndex
+     */
 }

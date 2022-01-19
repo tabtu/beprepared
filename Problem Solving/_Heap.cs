@@ -174,11 +174,8 @@ namespace coding
 
         // --------------------------------- SOLUTIONS ---------------------------------
 
-        /*
-         * https://leetcode-cn.com/problems/kth-largest-element-in-an-array
-         * 
+        /* https://leetcode-cn.com/problems/kth-largest-element-in-an-array
          * Find the Kth Largest Number
-         * 
          */
         private static int findKthLargest(int[] nums, int k)
         {
@@ -268,4 +265,13 @@ namespace coding
         //{
         //}
     }
+
+    /*
+     * 平衡函数 --- Heapify
+     * 上浮函数 --- swim
+     * 下沉函数 --- sink
+     * 
+     * 查找第K大的数 --- findKthLargest
+     * 查找中位数 --- findMedian
+     */
 }

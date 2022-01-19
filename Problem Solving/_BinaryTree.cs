@@ -141,30 +141,6 @@ namespace coding
             return queue.ToArray();
         }
 
-        public int[] levelorderTraversal_LEVEL(Node node)
-        {
-            Queue<int> queue = new Queue<int>();
-            if (node != null)
-            {
-                Queue<Node> queue2 = new Queue<Node>();
-                queue2.Enqueue(node);
-                while (queue2.Count > 0)
-                {
-                    Node x = queue2.Dequeue();
-                    queue.Enqueue(x.level);
-                    if (x.left != null)
-                    {
-                        queue2.Enqueue(x.left);
-                    }
-                    if (x.right != null)
-                    {
-                        queue2.Enqueue(x.right);
-                    }
-                }
-            }
-            return queue.ToArray();
-        }
-
         /// <summary>
         /// Level traversal a binary tree. (BFS, double Queue)
         /// fill node. level value
@@ -179,7 +155,7 @@ namespace coding
             bool isQ1 = true;
             que1.Enqueue(node);
 
-            int curl = 0;
+            int cur_level = 0;
 
             while (isQ1 == true && que1.Count > 0 || isQ1 == false && que2.Count > 0)
             {
@@ -198,17 +174,17 @@ namespace coding
                 }
 
                 // fill level into a node
-                nd.level = curl;
+                nd.level = cur_level;
 
                 if (isQ1 == true && que1.Count == 0)
                 {
                     isQ1 = false;
-                    curl++;
+                    cur_level++;
                 }
                 if (isQ1 == false && que2.Count == 0)
                 {
                     isQ1 = true;
-                    curl++;
+                    cur_level++;
                 }
             }
         }
@@ -304,98 +280,6 @@ namespace coding
             return root;
         }
 
-        private int size(Node node)
-        {
-            if (node == null) return 0;
-            return node.size;
-        }
-
-        public bool contains(Node node, int data)
-        {
-            return get(node, data) != null;
-        }
-
-        public Node get(Node node, int data)
-        {
-            if (node == null) return null;
-            if (data < node.data) return get(node.left, data);
-            else if (data > node.data) return get(node.right, data);
-            else return node;
-        }
-
-        /// <summary>
-        /// Returns the node in the subtree with the largest node.data less than or equal to data.
-        /// </summary>
-        /// <param name="node"></param>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public Node floor(Node node, int data)
-        {
-            if (node == null) return null;
-            if (data == node.data) return node;
-            if (data < node.data) return floor(node.left, data);
-            Node next = floor(node.right, data);
-            if (next != null) return next;
-            else return node;
-        }
-
-        /// <summary>
-        /// Returns the node in the subtree with the smallest node.data greater than or equal to data.
-        /// </summary>
-        /// <param name="node"></param>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public Node ceiling(Node node, int data)
-        {
-            if (node == null) return null;
-            if (data == node.data) return node;
-            if (data > node.data) return ceiling(node.right, data);
-            Node next = ceiling(node.left, data);
-            if (next != null) return next;
-            else return node;
-        }
-
-        /// <summary>
-        /// Returns the node, the kth smallest data in the subtree.
-        /// </summary>
-        /// <param name="node"></param>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public Node select(Node node, int k)
-        {
-            if (node == null) return null;
-            int t = size(node.left);
-            if (t > k) return select(node.left, k);
-            else if (t < k) return select(node.right, k - t - 1);
-            else return node;
-        }
-
-        /// <summary>
-        /// Returns the number of nodes in the subtree less than key.
-        /// </summary>
-        /// <param name="node"></param>
-        /// <param name="data"></param>
-        /// <returns></returns>
-        public int rank(Node node, int data)
-        {
-            if (node == null) return 0;
-            if (data < node.data) return rank(node.left, data);
-            else if (data > node.data) return 1 + size(node.left) + rank(node.right, data);
-            else return size(node.left);
-        }
-
-        /// <summary>
-        /// Returns the number of keys in the symbol table in the given range.
-        /// </summary>
-        /// <param name="lo"></param>
-        /// <param name="hi"></param>
-        /// <returns></returns>
-        public int size(Node node, int lo, int hi)
-        {
-            if (lo > hi) return 0;
-            if (contains(node, hi)) return rank(node, hi) - rank(node, lo) + 1;
-            else return rank(node, hi) - rank(node, lo);
-        }
 
 
 
@@ -508,6 +392,98 @@ namespace coding
             return isBST(node.left, min, node.data) && isBST(node.right, node.data, max);
         }
 
+        private int size(Node node)
+        {
+            if (node == null) return 0;
+            return node.size;
+        }
+
+        public bool contains(Node node, int data)
+        {
+            return get(node, data) != null;
+        }
+
+        public Node get(Node node, int data)
+        {
+            if (node == null) return null;
+            if (data < node.data) return get(node.left, data);
+            else if (data > node.data) return get(node.right, data);
+            else return node;
+        }
+
+        /// <summary>
+        /// Returns the node in the subtree with the largest node.data less than or equal to data.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public Node floor(Node node, int data)
+        {
+            if (node == null) return null;
+            if (data == node.data) return node;
+            if (data < node.data) return floor(node.left, data);
+            Node next = floor(node.right, data);
+            if (next != null) return next;
+            else return node;
+        }
+
+        /// <summary>
+        /// Returns the node in the subtree with the smallest node.data greater than or equal to data.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public Node ceiling(Node node, int data)
+        {
+            if (node == null) return null;
+            if (data == node.data) return node;
+            if (data > node.data) return ceiling(node.right, data);
+            Node next = ceiling(node.left, data);
+            if (next != null) return next;
+            else return node;
+        }
+
+        /// <summary>
+        /// Returns the node, the kth smallest data in the subtree.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public Node select(Node node, int k)
+        {
+            if (node == null) return null;
+            int t = size(node.left);
+            if (t > k) return select(node.left, k);
+            else if (t < k) return select(node.right, k - t - 1);
+            else return node;
+        }
+
+        /// <summary>
+        /// Returns the number of nodes in the subtree less than key.
+        /// </summary>
+        /// <param name="node"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public int rank(Node node, int data)
+        {
+            if (node == null) return 0;
+            if (data < node.data) return rank(node.left, data);
+            else if (data > node.data) return 1 + size(node.left) + rank(node.right, data);
+            else return size(node.left);
+        }
+
+        /// <summary>
+        /// Returns the number of keys in the symbol table in the given range.
+        /// </summary>
+        /// <param name="lo"></param>
+        /// <param name="hi"></param>
+        /// <returns></returns>
+        public int size(Node node, int lo, int hi)
+        {
+            if (lo > hi) return 0;
+            if (contains(node, hi)) return rank(node, hi) - rank(node, lo) + 1;
+            else return rank(node, hi) - rank(node, lo);
+        }
 
 
         // --------------------------------- AVL ---------------------------------
@@ -637,8 +613,6 @@ namespace coding
             return balance(node);
         }
 
-
-
         /// <summary>
         /// Checks if AVL property is consistent in the subtree.
         /// </summary>
@@ -695,12 +669,10 @@ namespace coding
 
 
 
-        //--------------------------------- Red-Black ---------------------------------
-
+        //--------------------------------- SOLUTIONS ---------------------------------
 
         /*
          * Find the max sum path in a binary tree.
-         * 
          */
         public int MaxPathSum(Node root)
         {
@@ -730,10 +702,8 @@ namespace coding
 
 
 
-
         /*
          * Check balance for a tree
-         * 
          */
         bool isBalanced(Node root)
         {
@@ -762,13 +732,8 @@ namespace coding
 
 
 
-
-
-
-
         /*
-         * Find a sub tree which have the maximum sum value
-         * 
+         * Find a sub tree which have the maximum sum value in BST
          */
         private int maxSumValue;
         public int maxSumBST(Node root)
@@ -799,7 +764,6 @@ namespace coding
 
         /*
          * Return a right side view for a tree (DFS)
-         * 
          */
         public List<int> rightSideView(Node root)
         {
@@ -825,12 +789,8 @@ namespace coding
 
 
 
-
-        /*
-         * https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
-         * 
+        /* https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
          * LCA 最近公共祖先
-         * 
          */
         public Node LowestCommonAncestor(Node root, Node p, Node q)
         {
@@ -841,11 +801,6 @@ namespace coding
             if (right == null) return left;
             return root;
         }
-
-
-
-
-
 
 
 
@@ -870,4 +825,33 @@ namespace coding
 
         //}
     }
+    /* 
+     * 交换左右子树 --- swapLeftRight
+     * 层序遍历 --- levelorderTraversal
+     * 标记层数 --- markLevel
+     * 二叉树序列化 --- serialize, deserialize
+     * 
+     * --- BST ---
+     * 二分查询 --- search, get, contains
+     * 是否是BST --- isBST
+     * 小于等于data的最大值节点 --- floor
+     * 大于等于data的最小值节点 --- ceiling
+     * 查找第k个最小值 --- select
+     * 比data小的节点个数 --- rank
+     * lo和hi之间的节点个数 --- size
+     * 
+     * --- AVL ---
+     *  --- balance
+     * 右旋转 --- rotateRight
+     * 左旋转 --- rotateLeft
+     * 是否是AVL --- isAVL
+     *  --- isSizeConsistent
+     *  --- isRankConsistent
+     * 
+     * 二叉树最大路径 --- MaxPathSum_DFS
+     * 二叉树是否平衡 --- heightDiff_DFS
+     * 最大二叉树子树 --- findMaxSumBST
+     * 二叉树右视图 --- rightSideView
+     * LCA 最近公共祖先 --- LowestCommonAncestor
+     */
 }

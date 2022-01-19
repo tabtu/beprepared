@@ -70,8 +70,6 @@ namespace coding
             }
         }
 
-
-
         static void Main(string[] args)
         {
             Console.WriteLine(fibonacciDP(7));

@@ -34,8 +34,6 @@ public class Solution
         return dp[m - 1, n - 1];
     }
 
-
-
     public int UniquePathsWithObstacles(int[][] obstacleGrid)
     {
         int m = obstacleGrid.Length;
