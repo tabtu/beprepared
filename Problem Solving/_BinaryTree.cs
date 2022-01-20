@@ -45,22 +45,6 @@ namespace coding
 
             // Red-Black
             public bool color;  // color of parent
-
-            public Node(int[] preorder, int[] inorder, bool isPre = true)
-            {
-                Node root = new Node(0);
-
-                if (isPre)
-                {
-
-                }
-                else
-                {
-
-                }
-
-                return root;
-            }
         }
 
 
