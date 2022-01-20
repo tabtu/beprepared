@@ -3,7 +3,7 @@
  * 
  * 1, Declare the defination of matrix/array, the meaning of subscript. 
  * 2, Initialize values. 
- * 3, Find the derivation formula / conversion function. 
+ * 3, Find the recursion formula / derivation formula / conversion function. 
  * 
  * 
  * 1, 确定dp数组及下标含义
