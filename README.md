@@ -13,6 +13,8 @@ Handwrite libraries to help understand basic data structure and algorithm
 
 Main conception language are C# and Python. <br />
 Linked problem URL in each comment. <br />
+
+- <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/BeautifulNumbers.cs">Beautiful Numbers</a>
 - <a href="https://github.com/tabtu/beprepared/blob/master/Problem%20Solving/ReviewInherit.cs">Review Inherit(abstruct, virtual, override)</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/FB_screening.cs">Facebook Screening Round</a>
 - <a href="https://github.com/tabtu/coding/blob/master/Problem%20Solving/3Sum.cs">3Sum</a>
